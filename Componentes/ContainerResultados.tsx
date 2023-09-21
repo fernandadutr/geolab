@@ -15,7 +15,7 @@ const ContainerResultados: React.FC = () => {
         >
             <Text style={styles.title}>Meus Resultados</Text>
             <View>
-                <Resultado />
+                <Resultado title='Ensaio 1'/>
             </View>
         </View>
     );

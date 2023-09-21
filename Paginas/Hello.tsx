@@ -15,9 +15,7 @@ const Hello: React.FC = () => {
 
     return (
         <View style={styles.container}>
-            {/* <View style={{width: 100, height:100 }}> */}
-                <Image style={{width: 100, height: 100}} source={require('../Styles/imagens/logo.png')} />
-            {/* </View> */}
+            <Image style={{ width: 100, height: 100 }} source={require('../Styles/imagens/logo.png')} />
             <Text style={styles.title}>AjudanteLab</Text>
             <TextInput
                 style={styles.input}

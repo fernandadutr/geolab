@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
 
   containerResultados: {
     flex: 1,
-    marginTop: 80,
+    marginTop: 10,
   },
   ensaioContainerX: {
     display: 'flex',
@@ -73,9 +73,9 @@ const styles = StyleSheet.create({
     height: 56,
     alignSelf: 'auto',
     backgroundColor: '#C2C2C2',
+    margin: 5,
     padding: 10,
     borderRadius: 9,
-
   },
 
 

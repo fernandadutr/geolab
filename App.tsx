@@ -1,17 +1,19 @@
 import * as React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Hello from './Paginas/Hello';
 import HomeScreen from './Paginas/Home';
+import EscolherEnsaio from './Paginas/EscolherEnsaio';
 
 
 export type RootStackParamList = {
   Hello: undefined;
   Home: { nomeUsuario: string };
   Auth: undefined;
-  };
+  EscolherEnsaio: undefined;
+};
 
-  const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator();
 
 
 const MyStack = () => {
@@ -21,12 +23,17 @@ const MyStack = () => {
         <Stack.Screen
           name="Hello"
           component={Hello}
-          options={{ headerShown: false}}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
-        name='Home'
-        component={HomeScreen}
-        options={{ headerShown: false}}
+          name='Home'
+          component={HomeScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name='EscolherEnsaio'
+          component={EscolherEnsaio}
+          options={{ title: 'Nova Amostra' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

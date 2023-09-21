@@ -33,8 +33,8 @@ const CustomHeader: React.FC<tittleProp> = ({ title }) => {
         <Text style={{ fontSize: 18 }}>{title}</Text>
       </View>
       <TouchableOpacity
-      onPress={() => navigation.navigate('Hello')}
-      >       
+        onPress={() => navigation.navigate('Hello')}
+      >
         <Image style={{ marginRight: 0 }} source={require('../assets/voltar.png')} />
       </TouchableOpacity>
     </View>

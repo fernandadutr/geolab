@@ -2,19 +2,19 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styles from '../Styles/Componentes';
 
-interface tittleProp {
-    title: string
+interface ResultadoProps {
+    title: string;
 }
 
-const ContainerNovoEnsaioX: React.FC = () => {
+const Resultado: React.FC<ResultadoProps> = ({ title }) => {
     return (
         <TouchableOpacity
             style={styles.ensaioContainerX}
         >
-            <Text style={styles.ensaioConteinerText}>Ensaio 1</Text>
+            <Text style={styles.ensaioConteinerText}>{title}</Text>
             <Image style={styles.imgSeta} source={require('../Styles/imagens/seta.png')} />
         </TouchableOpacity>
     );
 };
 
-export default ContainerNovoEnsaioX;
+export default Resultado;
