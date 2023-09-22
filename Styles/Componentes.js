@@ -77,6 +77,13 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 9,
   },
+  textImputEnsaio: {
+    textAlign: 'center',
+    marginVertical: 5,
+    borderRadius: 20,
+    padding: 6,
+    backgroundColor: '#A0A0A0'
+  }
 
 
 });

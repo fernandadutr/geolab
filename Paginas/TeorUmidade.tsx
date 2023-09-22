@@ -20,6 +20,8 @@ import React, { useRef, useState } from 'react';
 import { View, Text, TouchableOpacity, SafeAreaView, Image } from 'react-native';
 import Swiper from 'react-native-swiper';
 import styles from '../Styles/Componentes';
+import VerificarAparelhagem from '../Componentes/TeorUmidade/VerificarAparelhagem';
+import Passo1 from '../Componentes/TeorUmidade/Passo1';
 
 const TeorUmidade: React.FC = () => {
     const [page, setPage] = useState<number>(0);
@@ -53,12 +55,8 @@ const TeorUmidade: React.FC = () => {
                 paginationStyle={{ bottom: 10 }} // Estilo do container de indicadores de posição
                 onIndexChanged={(index) => setPage(index)}
             >
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text>Página 1</Text>
-                </View>
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text>Página 2</Text>
-                </View>
+                <VerificarAparelhagem />
+                <Passo1 />
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                     <Text>Página 3</Text>
                 </View>

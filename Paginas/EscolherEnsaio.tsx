@@ -3,7 +3,6 @@ import Ensaios from "../Utilidade/Ensaios";
 import styles from "../Styles/Componentes";
 import React from "react";
 import Amostra from "../Componentes/Amostra";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const EscolherEnsaio: React.FC = () => {
   return (
@@ -11,7 +10,7 @@ const EscolherEnsaio: React.FC = () => {
       <Text style={styles.title}>Escolha o Ensaio: </Text>
       <View style={styles.containerResultados}>
         {
-          Ensaios.map(ensaio => <Amostra title={ensaio.nome} />)
+          Ensaios.map(ensaio => <Amostra key={ensaio.id} title={ensaio.nome} />)
         }
       </View>
       <TouchableOpacity style={styles.ensaioContainer}>
