@@ -4,16 +4,23 @@ import Swiper from 'react-native-swiper';
 import styles from '../Styles/Componentes';
 import VerificarAparelhagem from '../Componentes/TeorUmidade/VerificarAparelhagem';
 import Passo1 from '../Componentes/TeorUmidade/Passo1';
+import Passo2 from '../Componentes/TeorUmidade/Passo2';
+import { ScrollView } from 'react-native';
+import Passo3 from '../Componentes/TeorUmidade/Passo3';
+import Passo4 from '../Componentes/TeorUmidade/Passo4';
+import Passo5 from '../Componentes/TeorUmidade/Passo5';
 
 const TeorUmidade: React.FC = () => {
     const [page, setPage] = useState<number>(0);
     const swiperRef = useRef<Swiper>(null);
     const [dadosPasso1, setDadosPasso1] = useState({ massa1: '', massa2: '', massa3: '' });
+    const [dadosPasso2, setDadosPasso2] = useState({ massa1: '', massa2: '', massa3: '' });
+    const [dadosPasso4, setDadosPasso4] = useState({ massa1: '', massa2: '', massa3: '' });
 
     const handleNextPage = () => {
         if (swiperRef.current) {
             const nextPage = page + 1;
-            if (nextPage < 3) {
+            if (nextPage < 6) {
                 swiperRef.current.scrollBy(1);
                 setPage(nextPage);
             }
@@ -37,9 +44,16 @@ const TeorUmidade: React.FC = () => {
             >
                 <VerificarAparelhagem />
                 <Passo1 setDadosPasso1={setDadosPasso1} />
-                <View>
-                    <Text>{dadosPasso1.massa1}</Text>
-                </View>
+                <ScrollView>
+                    <Passo2 setDadosPasso2={setDadosPasso2} />
+                </ScrollView>
+                <Passo3 />
+                <Passo4 setDadosPasso4={setDadosPasso4} />
+                <Passo5
+                    dadosPasso1={dadosPasso1}
+                    dadosPasso2={dadosPasso2}
+                    dadosPasso4={dadosPasso4}
+                />
             </Swiper>
             <View style={{ alignItems: 'center', marginBottom: 20 }}>
                 <TouchableOpacity style={styles.ensaioContainer} onPress={handleNextPage}>

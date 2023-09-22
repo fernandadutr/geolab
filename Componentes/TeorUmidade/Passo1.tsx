@@ -5,7 +5,7 @@ import styles from '../../Styles/Componentes';
 
 interface Passo1Props {
     setDadosPasso1: Dispatch<SetStateAction<{ massa1: string; massa2: string; massa3: string }>>;
-  }
+}
 
 const Passo1: React.FC<Passo1Props> = ({ setDadosPasso1 }) => {
     const [isChecked, setIsChecked] = useState(false);
@@ -27,7 +27,7 @@ const Passo1: React.FC<Passo1Props> = ({ setDadosPasso1 }) => {
                 style={{
                     fontWeight: 'bold',
                     textAlign: 'center',
-                    padding: 6,
+                    padding: 7,
                     backgroundColor: '#F2F8C6',
                     borderRadius: 20,
                 }}>
@@ -43,8 +43,9 @@ const Passo1: React.FC<Passo1Props> = ({ setDadosPasso1 }) => {
                 containerStyle={{ borderRadius: 9 }}
             />
             <TextInput
-                placeholder={'Massa Recipiente 1ª Determinação (M1)'}
+                placeholder={'Massa Recipiente 1ª Determinação (M3)'}
                 value={massa1}
+                keyboardType="numeric"
                 onChangeText={(text) => {
                     setMassa1(text);
                     handleInputChange();
@@ -52,8 +53,9 @@ const Passo1: React.FC<Passo1Props> = ({ setDadosPasso1 }) => {
                 style={styles.textImputEnsaio}
             />
             <TextInput
-                placeholder={'Massa Recipiente 2ª Determinação (M2)'}
+                placeholder={'Massa Recipiente 2ª Determinação (M3)'}
                 value={massa2}
+                keyboardType="numeric"
                 onChangeText={(text) => {
                     setMassa2(text);
                     handleInputChange();
@@ -63,6 +65,7 @@ const Passo1: React.FC<Passo1Props> = ({ setDadosPasso1 }) => {
             <TextInput
                 placeholder={'Massa Recipiente 3ª Determinação (M3)'}
                 value={massa3}
+                keyboardType="numeric"
                 onChangeText={(text) => {
                     setMassa3(text);
                     handleInputChange();

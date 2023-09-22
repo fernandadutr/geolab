@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
     margin: 8,
   },
   containerHome: {
+    maxHeight: "100%",
     flex: 1,
     padding: 20,
   },
