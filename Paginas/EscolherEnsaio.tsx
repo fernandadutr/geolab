@@ -1,8 +1,9 @@
-import { View, Text, TouchableOpacity, Image} from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import Ensaios from "../Utilidade/Ensaios";
 import styles from "../Styles/Componentes";
 import React from "react";
 import Amostra from "../Componentes/Amostra";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const EscolherEnsaio: React.FC = () => {
   return (
@@ -16,7 +17,6 @@ const EscolherEnsaio: React.FC = () => {
       <TouchableOpacity style={styles.ensaioContainer}>
         <Text style={styles.ensaioConteinerText}>Finalizar</Text>
         <Image style={styles.imgSeta} source={require('../Styles/imagens/seta.png')} />
-
       </TouchableOpacity>
     </View>
   );
