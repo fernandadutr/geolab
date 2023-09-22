@@ -1,13 +1,24 @@
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import { View, Text, TextInput } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import styles from '../../Styles/Componentes';
 
-const Passo1: React.FC = () => {
+interface Passo1Props {
+    setDadosPasso1: Dispatch<SetStateAction<{ massa1: string; massa2: string; massa3: string }>>;
+  }
+
+const Passo1: React.FC<Passo1Props> = ({ setDadosPasso1 }) => {
     const [isChecked, setIsChecked] = useState(false);
+    const [massa1, setMassa1] = useState('');
+    const [massa2, setMassa2] = useState('');
+    const [massa3, setMassa3] = useState('');
 
     const handleCheckboxToggle = () => {
         setIsChecked(!isChecked);
+    };
+
+    const handleInputChange = () => {
+        setDadosPasso1({ massa1, massa2, massa3 });
     };
 
     return (
@@ -31,13 +42,35 @@ const Passo1: React.FC = () => {
                 checkedColor="#A8B444"
                 containerStyle={{ borderRadius: 9 }}
             />
-            <TextInput placeholder={'Massa Recipiente 1ª Determinação (M1)'} style={styles.textImputEnsaio}/>
-            <TextInput placeholder={'Massa Recipiente 2ª Determinação (M2)'} style={styles.textImputEnsaio}/>
-            <TextInput placeholder={'Massa Recipiente 3ª Determinação (M3)'} style={styles.textImputEnsaio}/>
-
+            <TextInput
+                placeholder={'Massa Recipiente 1ª Determinação (M1)'}
+                value={massa1}
+                onChangeText={(text) => {
+                    setMassa1(text);
+                    handleInputChange();
+                }}
+                style={styles.textImputEnsaio}
+            />
+            <TextInput
+                placeholder={'Massa Recipiente 2ª Determinação (M2)'}
+                value={massa2}
+                onChangeText={(text) => {
+                    setMassa2(text);
+                    handleInputChange();
+                }}
+                style={styles.textImputEnsaio}
+            />
+            <TextInput
+                placeholder={'Massa Recipiente 3ª Determinação (M3)'}
+                value={massa3}
+                onChangeText={(text) => {
+                    setMassa3(text);
+                    handleInputChange();
+                }}
+                style={styles.textImputEnsaio}
+            />
         </View>
     );
 };
 
 export default Passo1;
-
