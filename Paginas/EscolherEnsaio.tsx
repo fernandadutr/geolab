@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import Ensaios from "../Utilidade/Ensaios";
+import Ensaios from "../FakeDB/Ensaios";
 import styles from "../Styles/Componentes";
 import React from "react";
 import Amostra from "../Componentes/Amostra";

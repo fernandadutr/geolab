@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styles from '../Styles/Componentes';
 import Resultado from './Resultados';
+import EnsaiosDB from '../FakeDB/EnsaiosDB';
+
 
 
 interface tittleProp {
@@ -9,13 +11,16 @@ interface tittleProp {
 }
 
 const ContainerResultados: React.FC = () => {
+    const ensaios = EnsaiosDB
     return (
         <View
-        style={styles.containerResultados}
+            style={styles.containerResultados}
         >
             <Text style={styles.title}>Meus Resultados</Text>
             <View>
-                <Resultado title='Ensaio 1'/>
+                {
+                    ensaios.map((ensaio) => <Resultado key={ensaio.id} Ensaio={ensaio} />)
+                }
             </View>
         </View>
     );
