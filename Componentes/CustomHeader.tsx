@@ -1,20 +1,15 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import styles from '../Styles/Componentes';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../App';
-
-interface tittleProp {
-  title: string
-}
+import { useUser } from '../Context/Context';
 
 type authScreenProp = NativeStackNavigationProp<RootStackParamList, 'Auth'>;
 
-
-const CustomHeader: React.FC<tittleProp> = ({ title }) => {
-
+const CustomHeader: React.FC = () => {
   const navigation = useNavigation<authScreenProp>();
+  const { userName } = useUser();
 
   return (
     <View style={{
@@ -30,7 +25,7 @@ const CustomHeader: React.FC<tittleProp> = ({ title }) => {
           source={require('../Styles/imagens/logo.png')}
           style={{ width: 45, height: 45, margin: 10 }}
         />
-        <Text style={{ fontSize: 18 }}>{title}</Text>
+        <Text style={{ fontSize: 18 }}>{userName}</Text>
       </View>
       <TouchableOpacity
         onPress={() => navigation.navigate('Hello')}

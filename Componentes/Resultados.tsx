@@ -56,6 +56,7 @@ const Resultado: React.FC<ResultadoProps> = ({ Ensaio }) => {
                 />
             </TouchableOpacity>
             <Collapsible collapsed={!estaExpandido}>
+                <Text style={{ margin: 15 }}>Nome do Usuario: {Ensaio.usuario}</Text>
                 <Text style={{ margin: 15 }}>Data: {Ensaio.data.toString()}</Text>
             </Collapsible>
         </View>

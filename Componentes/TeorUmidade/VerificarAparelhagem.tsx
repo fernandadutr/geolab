@@ -43,7 +43,7 @@ const VerificarAparelhagem: React.FC = () => {
   };
 
   return (
-    <View style={{ marginVertical: 25 }}>
+    <View style={{ padding: 20 }}>
       <Text
         style={{
           fontWeight: 'bold',

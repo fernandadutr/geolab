@@ -1,22 +1,17 @@
 import React, { useState } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, TouchableOpacity, Modal, Button } from 'react-native';
 import { CheckBox } from 'react-native-elements';
+import ErrorModal from '../ErrorModal';
 
 interface Passo5Props {
-    dadosPasso1: { massa1: string; massa2: string; massa3: string };
-    dadosPasso2: { massa1: string; massa2: string; massa3: string };
-    dadosPasso4: { massa1: string; massa2: string; massa3: string };
+    dadosPasso1: { massa1: number; massa2: number; massa3: number };
+    dadosPasso2: { massa1: number; massa2: number; massa3: number };
+    dadosPasso4: { massa1: number; massa2: number; massa3: number };
 }
 
-function calcularW(massa1: number, massa2: number, massa3: number): number | null {
-    if (massa2 - massa3 === 0) {
-        return null;
-    }
-
+function calcularW(massa3: number, massa1: number, massa2: number): number {
     const w = ((massa1 - massa2) / (massa2 - massa3)) * 100;
-
     const wArredondado = Number(w.toFixed(2));
-
     return wArredondado;
 }
 
@@ -26,6 +21,7 @@ const Passo5: React.FC<Passo5Props> = ({ dadosPasso1, dadosPasso2, dadosPasso4 }
     const [resultado1, setResultado1] = useState<number | null>(null);
     const [resultado2, setResultado2] = useState<number | null>(null);
     const [resultado3, setResultado3] = useState<number | null>(null);
+    const [modalVisible, setModalVisible] = useState(false);
 
     const handleCheckboxToggle1 = () => {
         setIsChecked1(!isChecked1);
@@ -36,19 +32,38 @@ const Passo5: React.FC<Passo5Props> = ({ dadosPasso1, dadosPasso2, dadosPasso4 }
     };
 
     const calcularDeterminacoes = () => {
-        // Calcular o valor de w para cada determinação
-        const w1 = calcularW(parseFloat(dadosPasso1.massa1), parseFloat(dadosPasso1.massa2), parseFloat(dadosPasso1.massa3));
-        const w2 = calcularW(parseFloat(dadosPasso2.massa1), parseFloat(dadosPasso2.massa2), parseFloat(dadosPasso2.massa3));
-        const w3 = calcularW(parseFloat(dadosPasso4.massa1), parseFloat(dadosPasso4.massa2), parseFloat(dadosPasso4.massa3));
+        if (
+            !dadosPasso1.massa1 ||
+            !dadosPasso1.massa2 ||
+            !dadosPasso1.massa3 ||
+            !dadosPasso2.massa1 ||
+            !dadosPasso2.massa2 ||
+            !dadosPasso2.massa3 ||
+            !dadosPasso4.massa1 ||
+            !dadosPasso4.massa2 ||
+            !dadosPasso4.massa3
+        ) {
+            setModalVisible(true);
+            return;
+        }
 
-        // Atualizar os estados com os resultados
+        const w1 = calcularW(dadosPasso1.massa1, dadosPasso2.massa1, dadosPasso4.massa1);
+        const w2 = calcularW(dadosPasso1.massa2, dadosPasso2.massa2, dadosPasso4.massa2);
+        const w3 = calcularW(dadosPasso1.massa3, dadosPasso2.massa3, dadosPasso4.massa3);
+
         setResultado1(w1);
         setResultado2(w2);
         setResultado3(w3);
     };
 
+    function calcularMedia(w1: number, w2: number, w3: number) {
+        const soma = w1 + w2 + w3;
+        const media = soma / 3;
+        return media.toFixed(2);
+    }
+
     return (
-        <View style={{ marginVertical: 25 }}>
+        <View style={{ padding: 20 }}>
             <Text
                 style={{
                     fontWeight: 'bold',
@@ -72,7 +87,7 @@ const Passo5: React.FC<Passo5Props> = ({ dadosPasso1, dadosPasso2, dadosPasso4 }
                 M2 é a massa do solo seco + a massa do recipiente, expressa em gramas (g);
                 M3 é a massa do recipiente, expressa em gramas (g).
             </Text>
-            <View style={{ alignItems: 'center' }}>
+            <View style={{ alignItems: 'center', marginVertical: 25 }}>
                 <Text style={{ color: '#5F6811' }}>
                     1ª Determinação: Teor de Umidade (w) = {resultado1 !== null ? resultado1 : 'Aguardando cálculo'}
                 </Text>
@@ -91,8 +106,30 @@ const Passo5: React.FC<Passo5Props> = ({ dadosPasso1, dadosPasso2, dadosPasso4 }
                 checkedColor="#A8B444"
                 containerStyle={{ borderRadius: 9 }}
             />
-
-            <Button title="Obter Determinações" onPress={calcularDeterminacoes} />
+            <Text style={{ textAlign: 'center' }}>
+                {`Teor de Umidade da Amostra (w) = ${calcularMedia(
+                    resultado1 !== null ? resultado1 : 0,
+                    resultado2 !== null ? resultado2 : 0,
+                    resultado3 !== null ? resultado3 : 0
+                )}`}
+            </Text>
+            <TouchableOpacity
+                style={{
+                    marginVertical: 20,
+                    backgroundColor: '#A8B444',
+                    padding: 10,
+                    borderRadius: 8,
+                    alignItems: 'center',
+                }}
+                onPress={calcularDeterminacoes}
+            >
+                <Text style={{ color: 'white', fontSize: 18 }}>Obter Determinações</Text>
+            </TouchableOpacity>
+            <ErrorModal
+                isVisible={modalVisible}
+                message={"Opa! Você esqueceu algum dado."}
+                onClose={() => setModalVisible(false)}
+            />
         </View>
     );
 };

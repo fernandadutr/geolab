@@ -4,25 +4,27 @@ import { CheckBox } from 'react-native-elements';
 import styles from '../../Styles/Componentes';
 
 interface Passo1Props {
-    setDadosPasso1: Dispatch<SetStateAction<{ massa1: string; massa2: string; massa3: string }>>;
+    setDadosPasso1: Dispatch<SetStateAction<{ massa1: number; massa2: number; massa3: number }>>;
 }
 
 const Passo1: React.FC<Passo1Props> = ({ setDadosPasso1 }) => {
     const [isChecked, setIsChecked] = useState(false);
-    const [massa1, setMassa1] = useState('');
-    const [massa2, setMassa2] = useState('');
-    const [massa3, setMassa3] = useState('');
+    const [massa1, setMassa1] = useState<number | ''>(0); // Inicialize como número ou string vazia
+    const [massa2, setMassa2] = useState<number | ''>(0); // Inicialize como número ou string vazia
+    const [massa3, setMassa3] = useState<number | ''>(0); // Inicialize como número ou string vazia
 
     const handleCheckboxToggle = () => {
         setIsChecked(!isChecked);
     };
 
     const handleInputChange = () => {
-        setDadosPasso1({ massa1, massa2, massa3 });
+        if (typeof massa1 === 'number' && typeof massa2 === 'number' && typeof massa3 === 'number') {
+            setDadosPasso1({ massa1, massa2, massa3 });
+        }
     };
 
     return (
-        <View style={{ marginVertical: 25 }}>
+        <View style={{ padding: 20 }}>
             <Text
                 style={{
                     fontWeight: 'bold',
@@ -44,33 +46,27 @@ const Passo1: React.FC<Passo1Props> = ({ setDadosPasso1 }) => {
             />
             <TextInput
                 placeholder={'Massa Recipiente 1ª Determinação (M3)'}
-                value={massa1}
+                value={massa1 !== '' ? massa1.toString() : ''}
                 keyboardType="numeric"
-                onChangeText={(text) => {
-                    setMassa1(text);
-                    handleInputChange();
-                }}
+                onChangeText={(text) => setMassa1(text !== '' ? parseFloat(text) : '')}
                 style={styles.textImputEnsaio}
+                onBlur={handleInputChange} // Chame a função de validação quando o foco for perdido
             />
             <TextInput
                 placeholder={'Massa Recipiente 2ª Determinação (M3)'}
-                value={massa2}
+                value={massa2 !== '' ? massa2.toString() : ''}
                 keyboardType="numeric"
-                onChangeText={(text) => {
-                    setMassa2(text);
-                    handleInputChange();
-                }}
+                onChangeText={(text) => setMassa2(text !== '' ? parseFloat(text) : '')}
                 style={styles.textImputEnsaio}
+                onBlur={handleInputChange}
             />
             <TextInput
                 placeholder={'Massa Recipiente 3ª Determinação (M3)'}
-                value={massa3}
+                value={massa3 !== '' ? massa3.toString() : ''}
                 keyboardType="numeric"
-                onChangeText={(text) => {
-                    setMassa3(text);
-                    handleInputChange();
-                }}
+                onChangeText={(text) => setMassa3(text !== '' ? parseFloat(text) : '')}
                 style={styles.textImputEnsaio}
+                onBlur={handleInputChange}
             />
         </View>
     );

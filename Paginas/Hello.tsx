@@ -4,14 +4,22 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../App';
 import styles from '../Styles/Componentes';
+import { useUser } from '../Context/Context';
 
 type authScreenProp = NativeStackNavigationProp<RootStackParamList, 'Auth'>;
 
 const Hello: React.FC = () => {
     const [nomeUsuario, setNomeUsuario] = useState('');
-
+    const { setUserName } = useUser(); 
 
     const navigation = useNavigation<authScreenProp>();
+
+    const handleEntrar = () => {
+        if (nomeUsuario !== '') {
+            setUserName(nomeUsuario); 
+            navigation.navigate('Home');
+        }
+    };
 
     return (
         <View style={styles.container}>
@@ -26,7 +34,7 @@ const Hello: React.FC = () => {
             <TouchableOpacity
                 style={styles.radius20button}
                 disabled={nomeUsuario === ''}
-                onPress={() => navigation.navigate('Home', { nomeUsuario: nomeUsuario })}
+                onPress={handleEntrar}
             >
                 <Text style={styles.buttonText}>Entrar</Text>
             </TouchableOpacity>
