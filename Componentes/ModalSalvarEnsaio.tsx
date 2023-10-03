@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { View, Modal, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../App';
 import EnsaiosDB, { Ensaio } from '../FakeDB/EnsaiosDB';
 import { useUser } from '../Context/Context';
 import { useEnsaios } from '../Context/EnsaiosContext';
+import styles from '../Styles/Componentes';
+import Modal from 'react-native-modal';
 
 interface ModalSalvarEnsaioProps {
     visible: boolean;
@@ -29,9 +31,7 @@ const ModalSalvarEnsaio: React.FC<ModalSalvarEnsaioProps> = ({ visible, onClose 
             data: new Date(),
             concluidos: ['Teor de Umidade'],
             usuario: userName,
-
         };
-
 
         setEnsaios([...ensaios, novoEnsaio]);
 
@@ -42,20 +42,33 @@ const ModalSalvarEnsaio: React.FC<ModalSalvarEnsaioProps> = ({ visible, onClose 
 
     return (
         <Modal
-            animationType="slide"
-            transparent={true}
-            visible={visible}
-            onRequestClose={onClose}
+            isVisible={visible}
+            animationIn="slideInUp"
+            animationOut="slideOutDown"
+            onBackdropPress={onClose}
         >
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <View style={{ backgroundColor: 'white', padding: 20, borderRadius: 10 }}>
-                    <Text>Nome do Ensaio</Text>
+                <View style={{
+                    backgroundColor: 'white',
+                    padding: 20,
+                    borderRadius: 10,
+                    alignItems: 'center',
+                }}>
+                    <Text style={{ color: '#A8B444', fontWeight: 'bold', fontSize: 18 }}>Nome do Ensaio</Text>
                     <TextInput
                         value={nomeEnsaio}
                         onChangeText={setNomeEnsaio}
+                        style={{backgroundColor: '#F1F5F4', borderRadius: 9}}
                         placeholder="Digite o nome do ensaio"
                     />
-                    <Button title="Salvar Ensaio" onPress={handleSalvarEnsaio} />
+                    <TouchableOpacity
+                        style={styles.ensaioContainer}
+                        onPress={handleSalvarEnsaio}
+                    >
+                        <Text style={{ marginVertical: 5, fontWeight: 'bold' }}>
+                            Salvar Ensaio
+                        </Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         </Modal>

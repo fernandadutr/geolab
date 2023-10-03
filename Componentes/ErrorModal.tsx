@@ -10,9 +10,12 @@ interface ErrorModalProps {
 
 const ErrorModal: FC<ErrorModalProps> = ({ isVisible, message, onClose }) => {
     return (
-        <Modal isVisible={isVisible}>
+        <Modal isVisible={isVisible}
+            animationIn="slideInUp"
+            animationOut="slideOutDown"
+        >
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ color: 'red' }}>{message}</Text>
+                <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 16 }}>{message}</Text>
                 <TouchableOpacity
                     style={{
                         marginVertical: 20,
