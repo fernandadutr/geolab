@@ -25,7 +25,7 @@ const CustomHeader: React.FC = () => {
           source={require('../Styles/imagens/logo.png')}
           style={{ width: 45, height: 45, margin: 10 }}
         />
-        <Text style={{ fontSize: 18 }}>{userName}</Text>
+        <Text style={{ fontSize: 18 }}>Bem vindo {userName}!</Text>
       </View>
       <TouchableOpacity
         onPress={() => navigation.navigate('Hello')}
