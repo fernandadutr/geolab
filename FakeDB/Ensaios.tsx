@@ -4,11 +4,11 @@ const Ensaios = [
         id: 1
     },
     {
-        nome: "Massa/Peso Especifíco",
+        nome: "Granulometria (Peneiramento)",
         id: 2
     },
     {
-        nome: "Granulometria (Peneiramento + Sedimentação)",
+        nome: "Massa/Peso Especifíco",
         id: 3
     },
     {
