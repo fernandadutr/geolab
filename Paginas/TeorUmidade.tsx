@@ -78,7 +78,7 @@ const TeorUmidade: React.FC = () => {
                 </TouchableOpacity>
             </View>
             <ModalSalvarEnsaio
-                visible={modalVisible} 
+                visible={modalVisible}
                 onClose={() => setModalVisible(false)}
             />
         </KeyboardAwareScrollView>

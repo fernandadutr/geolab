@@ -6,7 +6,6 @@ import { RootStackParamList } from '../App';
 import EnsaiosDB, { Ensaio } from '../FakeDB/EnsaiosDB';
 import { useUser } from '../Context/Context';
 import { useEnsaios } from '../Context/EnsaiosContext';
-import styles from '../Styles/Componentes';
 import Modal from 'react-native-modal';
 import { Image } from 'react-native-elements';
 

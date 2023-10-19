@@ -10,7 +10,7 @@ const EscolherEnsaio: React.FC = () => {
       <Text style={styles.title}>Escolha o Ensaio: </Text>
       <View style={styles.containerResultados}>
         {
-          Ensaios.map(ensaio => <Amostra key={ensaio.id} title={ensaio.nome} />)
+          Ensaios.map(ensaio => <Amostra key={ensaio.id} title={ensaio.nome} enable={ensaio.enable} route={ensaio.route} />)
         }
       </View>
       <TouchableOpacity style={styles.ensaioContainer}>

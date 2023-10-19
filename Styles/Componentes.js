@@ -78,6 +78,20 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 9,
   },
+
+  ensaioContainerY: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    height: 56,
+    alignSelf: 'auto',
+    backgroundColor: '#F1F5F4',
+    margin: 5,
+    padding: 10,
+    borderRadius: 9,
+  },
+
   textImputEnsaio: {
     textAlign: 'center',
     marginVertical: 5,

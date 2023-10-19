@@ -8,20 +8,27 @@ import { useNavigation } from '@react-navigation/native';
 
 interface ResultadoProps {
     title: string;
+    enable: boolean;
+    route: keyof RootStackParamList;
 }
 
 type authScreenProp = NativeStackNavigationProp<RootStackParamList, 'Auth'>;
 
 
-const Amostra: React.FC<ResultadoProps> = ({ title }) => {
-    const ensaioConcluido = ["Massa/Peso Especifíco"];
+const Amostra: React.FC<ResultadoProps> = ({ title, enable, route }) => {
+    const ensaioConcluido: Array<string> = [];
 
     const navigation = useNavigation<authScreenProp>();
 
     return (
         <TouchableOpacity
-            style={styles.ensaioContainerX}
-            onPress={() => navigation.navigate('TeorUmidade') }
+            style={enable ? styles.ensaioContainerX : styles.ensaioContainerY}
+            onPress={() => {
+                if (enable) {
+                    navigation.navigate(route);
+                }
+            }}
+            disabled={!enable}
         >
             <View style={{ display: 'flex', flexDirection: 'row', alignSelf: 'center', height: 50 }}>
                 <CheckBox

@@ -15,6 +15,7 @@ export type RootStackParamList = {
   Auth: undefined;
   EscolherEnsaio: undefined;
   TeorUmidade: undefined;
+  Granulometria: undefined;
 };
 
 const Stack = createNativeStackNavigator();
