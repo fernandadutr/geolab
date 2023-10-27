@@ -1,54 +1,56 @@
 import React from 'react';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Text, View } from 'react-native';
 import styles from '../Styles/Componentes';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Granulometria: React.FC = () => {
     return (
-        <div style={{ display: 'flex', flexDirection: "column" }}>
-            <section>
-
+        <SafeAreaView style={{ display: 'flex', flexDirection: "column" }}>
+            <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginBottom:10 }}>
                 <TouchableOpacity
-                    style={{}}
+                    style={{ width: '40%', backgroundColor: '#F2F6CD', alignContent: 'center', borderRadius: 8, padding: 26, marginRight: 10 }}
                 >
-                    <Text style={styles.buttonText}>Preparação da
+                    <Text >Preparação da
                         amostra
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={styles.radius20button}
+                    style={{ width: '40%', backgroundColor: '#F2F6CD', alignContent: 'center', borderRadius: 8, padding: 26 }}
                 >
-                    <Text style={styles.buttonText}>Teor de Umidade</Text>
+                    <Text style={{ width: '50%', backgroundColor: '#F2F6CD' }}>Teor de Umidade</Text>
                 </TouchableOpacity>
-            </section>
-            <section>
+            </View >
+            <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' ,marginBottom:10}}>
 
                 <TouchableOpacity
-                    style={styles.radius20button}
+                    style={{ width: '40%', backgroundColor: '#F2F6CD', alignContent: 'center', borderRadius: 8, padding: 26, marginRight: 10 }}
                 >
-                    <Text style={styles.buttonText}>Peneiramento
+                    <Text >Peneiramento
                         Grosso</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={styles.radius20button}
+                    style={{ width: '40%', backgroundColor: '#F2F6CD', alignContent: 'center', borderRadius: 8, padding: 26 }}
                 >
-                    <Text style={styles.buttonText}>Sedimentação</Text>
+                    <Text >Sedimentação</Text>
                 </TouchableOpacity>
-            </section>
-            <section>
+            </View>
+            <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginBottom:10}}>
                 <TouchableOpacity
-                    style={styles.radius20button}
+                    style={{ width: '40%', backgroundColor: '#F2F6CD', alignContent: 'center', borderRadius: 8, padding: 26, marginRight: 10 }}
                 >
-                    <Text style={styles.buttonText}>Peneiramento
-                        Fino</Text>
+                    <Text >Peneiramento
+                        Fino
+                    </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={styles.radius20button}
+                    style={{ width: '40%', backgroundColor: '#F2F6CD', alignContent: 'center', borderRadius: 8, padding: 26 }}
                 >
-                    <Text style={styles.buttonText}>Gerar Curva
-                        Granulométrica</Text>
+                    <Text >Gerar Curva
+                        Granulométrica
+                    </Text>
                 </TouchableOpacity>
-            </section>
-        </div>
+            </View>
+        </SafeAreaView>
     );
 
 }

@@ -7,6 +7,7 @@ import EscolherEnsaio from './Paginas/EscolherEnsaio';
 import TeorUmidade from './Paginas/TeorUmidade';
 import { UserProvider } from './Context/Context';
 import { EnsaiosProvider } from './Context/EnsaiosContext';
+import Granulometria from './Paginas/Granulometria';
 
 
 export type RootStackParamList = {
@@ -46,6 +47,11 @@ const MyStack = () => {
               name='TeorUmidade'
               component={TeorUmidade}
               options={{ title: 'Nova Amostra' }}
+            />
+            <Stack.Screen 
+            name='Granulometria'
+            component={Granulometria}
+            options={{ title: 'Análise Granulométrica'}}
             />
           </Stack.Navigator>
         </NavigationContainer>
