@@ -2,25 +2,16 @@ import React, { useRef, useState } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import Swiper from 'react-native-swiper';
 import styles from '../Styles/Componentes';
-import VerificarAparelhagem from '../Componentes/TeorUmidade/VerificarAparelhagem';
-import Passo1 from '../Componentes/TeorUmidade/Passo1';
-import Passo2 from '../Componentes/TeorUmidade/Passo2';
-import { ScrollView } from 'react-native';
-import Passo3 from '../Componentes/TeorUmidade/Passo3';
-import Passo4 from '../Componentes/TeorUmidade/Passo4';
-import Passo5 from '../Componentes/TeorUmidade/Passo5';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import ModalSalvarEnsaio from '../Componentes/ModalSalvarEnsaio';
-import { AparelhagemTU } from '../FakeDB/Aparelhagem';
+import VerificarAparelhagem from '../Componentes/TeorUmidade/VerificarAparelhagem';
+import { AparelhagemG, Passo1 } from '../FakeDB/Aparelhagem';
 
-const TeorUmidade: React.FC = () => {
+
+const PrepararAmostra: React.FC = () => {
     const [page, setPage] = useState<number>(0);
     const swiperRef = useRef<Swiper>(null);
-    const [dadosPasso1, setDadosPasso1] = useState({ massa1: 0, massa2: 0, massa3: 0 });
-    const [dadosPasso2, setDadosPasso2] = useState({ massa1: 0, massa2: 0, massa3: 0 });
-    const [dadosPasso4, setDadosPasso4] = useState({ massa1: 0, massa2: 0, massa3: 0 });
     const [modalVisible, setModalVisible] = useState(false);
-    const [nomeEnsaio, setNomeEnsaio] = useState('');
 
     const handleNextPage = () => {
         if (swiperRef.current) {
@@ -41,7 +32,7 @@ const TeorUmidade: React.FC = () => {
                 flex: 1,
                 marginBottom: 10,
             }}
-            contentContainerStyle={{ flexGrow: 1 }}
+            contentContainerStyle={{ flexGrow: 1, padding: 10 }}
             enableOnAndroid={true}
         >
             <View>
@@ -53,37 +44,29 @@ const TeorUmidade: React.FC = () => {
             <Swiper
                 ref={swiperRef}
                 loop={false}
+                style={{ maxHeight: 500 }}
                 showsPagination={true}
-                dotStyle={{ backgroundColor: '#D9D9D9', width: 10, height: 10 }}
+                dotStyle={{ backgroundColor: '#D9D9D9', width: 5, height: 5 }}
                 activeDotStyle={{ backgroundColor: '#A8B444', width: 10, height: 10 }}
                 paginationStyle={{ bottom: 10, alignItems: 'center' }}
                 onIndexChanged={(index) => setPage(index)}
             >
-                <VerificarAparelhagem initialCheckBoxes={AparelhagemTU} />
-                <Passo1 setDadosPasso1={setDadosPasso1} />
-                <ScrollView>
-                    <Passo2 setDadosPasso={setDadosPasso2} />
-                </ScrollView>
-                <Passo3 />
-                <Passo4 setDadosPasso4={setDadosPasso4} />
-                <Passo5
-                    dadosPasso1={dadosPasso1}
-                    dadosPasso2={dadosPasso2}
-                    dadosPasso4={dadosPasso4}
-                />
+                <VerificarAparelhagem initialCheckBoxes={AparelhagemG} />
+                <VerificarAparelhagem initialCheckBoxes={Passo1} />
+
             </Swiper>
-            <View style={{ alignItems: 'center', paddingHorizontal: 20 }}>
+            <ModalSalvarEnsaio
+                visible={modalVisible}
+                onClose={() => setModalVisible(false)}
+            />
+            <View style={{ alignItems: 'center', paddingHorizontal: 20, marginBottom: 10 }}>
                 <TouchableOpacity style={styles.ensaioContainer} onPress={handleNextPage}>
                     <Text style={styles.ensaioConteinerText}>Próximo Passo</Text>
                     <Image style={styles.imgSeta} source={require('../Styles/imagens/seta.png')} />
                 </TouchableOpacity>
             </View>
-            <ModalSalvarEnsaio
-                visible={modalVisible}
-                onClose={() => setModalVisible(false)}
-            />
         </KeyboardAwareScrollView>
     );
 };
 
-export default TeorUmidade;
+export default PrepararAmostra;

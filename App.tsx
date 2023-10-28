@@ -8,6 +8,7 @@ import TeorUmidade from './Paginas/TeorUmidade';
 import { UserProvider } from './Context/Context';
 import { EnsaiosProvider } from './Context/EnsaiosContext';
 import Granulometria from './Paginas/Granulometria';
+import PrepararAmostra from './Paginas/PrepararAmostra';
 
 
 export type RootStackParamList = {
@@ -17,12 +18,16 @@ export type RootStackParamList = {
   EscolherEnsaio: undefined;
   TeorUmidade: undefined;
   Granulometria: undefined;
+  PrepararAmostra: undefined;
 };
 
 const Stack = createNativeStackNavigator();
 
 
 const MyStack = () => {
+  if (__DEV__) {
+    require('react-devtools');
+  }
   return (
     <UserProvider>
       <EnsaiosProvider>
@@ -48,10 +53,14 @@ const MyStack = () => {
               component={TeorUmidade}
               options={{ title: 'Nova Amostra' }}
             />
-            <Stack.Screen 
-            name='Granulometria'
-            component={Granulometria}
-            options={{ title: 'Análise Granulométrica'}}
+            <Stack.Screen
+              name='Granulometria'
+              component={Granulometria}
+              options={{ title: 'Análise Granulométrica' }}
+            />
+            <Stack.Screen
+              name='PrepararAmostra'
+              component={PrepararAmostra}
             />
           </Stack.Navigator>
         </NavigationContainer>
