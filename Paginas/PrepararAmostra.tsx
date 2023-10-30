@@ -5,7 +5,8 @@ import styles from '../Styles/Componentes';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import ModalSalvarEnsaio from '../Componentes/ModalSalvarEnsaio';
 import VerificarAparelhagem from '../Componentes/TeorUmidade/VerificarAparelhagem';
-import { AparelhagemG, Passo1 } from '../FakeDB/Aparelhagem';
+import { AparelhagemG, Passo1, Passo3 } from '../FakeDB/Aparelhagem';
+import Passo2 from '../Componentes/Granulometria/PrepararAmostra/Passo2';
 
 
 const PrepararAmostra: React.FC = () => {
@@ -53,6 +54,8 @@ const PrepararAmostra: React.FC = () => {
             >
                 <VerificarAparelhagem initialCheckBoxes={AparelhagemG} />
                 <VerificarAparelhagem initialCheckBoxes={Passo1} />
+                <Passo2/>
+                <VerificarAparelhagem initialCheckBoxes={Passo3} />
 
             </Swiper>
             <ModalSalvarEnsaio

@@ -54,3 +54,27 @@ export const Passo1 = [
         checked: false
     }
 ]
+
+export const Passo3 = [
+
+    {
+        id: 1,
+        label: 'Passe o material na peneira de 2,0mm, tomando a '
+            + 'precaução de desmanchar todos os torrões ainda existentes.',
+        checked: false
+    },
+
+    {
+        id: 2,
+        label: 'Separe e reserve a parte retida e a parte passante na peneira de 2,00mm.',
+        checked: false
+    },
+    {
+        id: 3,
+        label: 'O material retido será utilizado no ensaio de Peneiramento'
+            + 'Grosso. Enquanto o material passante será utilizado nos'
+            + 'ensaios de Sedimentação e  Peneiramento Fino.',
+        checked: false
+    }
+
+]
