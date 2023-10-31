@@ -10,13 +10,20 @@ type authScreenProp = NativeStackNavigationProp<RootStackParamList, 'Auth'>;
 
 const Hello: React.FC = () => {
     const [nomeUsuario, setNomeUsuario] = useState('');
-    const { setUserName } = useUser(); 
+    const [email, setEmail] = useState('');
+    const { setUserName } = useUser();
 
     const navigation = useNavigation<authScreenProp>();
 
+    const isEmailValid = (email: string) => {
+        const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+        return emailRegex.test(email);
+    };
+
     const handleEntrar = () => {
-        if (nomeUsuario !== '') {
-            setUserName(nomeUsuario); 
+        if (nomeUsuario !== '' && isEmailValid(email)) {
+            setUserName(nomeUsuario);
+            setEmail(email);
             navigation.navigate('Home');
         }
     };
@@ -31,9 +38,15 @@ const Hello: React.FC = () => {
                 value={nomeUsuario}
                 onChangeText={(text) => setNomeUsuario(text)}
             />
+            <TextInput
+                style={styles.input}
+                placeholder='Qual seu email?'
+                value={email}
+                onChangeText={(text) => setEmail(text)}
+            />
             <TouchableOpacity
                 style={styles.radius20button}
-                disabled={nomeUsuario === ''}
+                disabled={nomeUsuario === '' || !isEmailValid(email)}
                 onPress={handleEntrar}
             >
                 <Text style={styles.buttonText}>Entrar</Text>
