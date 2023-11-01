@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { CheckBox, Input } from 'react-native-elements';
 import styles from '../../../Styles/Componentes';
+import { useEnsaios } from '../../../Context/EnsaiosContext';
 
 type CheckboxesState = {
     checkbox1: boolean;
@@ -22,6 +23,9 @@ const Passo2: React.FC = () => {
             [checkboxName]: !checkboxes[checkboxName],
         });
     };
+
+    const { ensaios, setMassaTotal } = useEnsaios();
+    const [inputValue, setInputValue] = useState('');
 
     return (
         <View style={{ padding: 20 }}>
@@ -65,6 +69,11 @@ const Passo2: React.FC = () => {
                 placeholder={'Massa Total da Amostra (Mt)'}
                 style={styles.textImputEnsaio}
                 keyboardType="numeric"
+                value={inputValue}
+                onChangeText={(text) => {
+                    setInputValue(text);
+                    setMassaTotal(text);
+                }}
             />
         </View>
     );
