@@ -55,7 +55,7 @@ export const Passo1 = [
     }
 ]
 
-export const Passo3 = [
+export const Passo3G = [
 
     {
         id: 1,

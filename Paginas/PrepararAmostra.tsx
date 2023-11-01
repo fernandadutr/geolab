@@ -3,29 +3,41 @@ import { View, Text, TouchableOpacity, Image } from 'react-native';
 import Swiper from 'react-native-swiper';
 import styles from '../Styles/Componentes';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import ModalSalvarEnsaio from '../Componentes/ModalSalvarEnsaio';
 import VerificarAparelhagem from '../Componentes/TeorUmidade/VerificarAparelhagem';
-import { AparelhagemG, Passo1, Passo3 } from '../FakeDB/Aparelhagem';
+import { AparelhagemG, Passo1, Passo3G } from '../FakeDB/Aparelhagem';
 import Passo2 from '../Componentes/Granulometria/PrepararAmostra/Passo2';
-
+import Passo3 from '../Componentes/Granulometria/PrepararAmostra/Passo3';
+import { authScreenProp } from './Granulometria';
+import { useNavigation } from '@react-navigation/native';
 
 const PrepararAmostra: React.FC = () => {
     const [page, setPage] = useState<number>(0);
     const swiperRef = useRef<Swiper>(null);
-    const [modalVisible, setModalVisible] = useState(false);
+    const navigation = useNavigation<authScreenProp>();
+    const [isFinalStep, setIsFinalStep] = useState(false);
 
     const handleNextPage = () => {
         if (swiperRef.current) {
             const nextPage = page + 1;
-            if (nextPage < 6) {
+            if (nextPage < 5) {
                 swiperRef.current.scrollBy(1);
                 setPage(nextPage);
-            } else if (nextPage === 6) {
-                setModalVisible(true);
+                if (nextPage === 4) {
+                    setIsFinalStep(true);
+                } else {
+                    setIsFinalStep(false);
+                }
             }
         }
     };
 
+    const handleFinishPreparation = () => {
+        if (isFinalStep) {
+            navigation.navigate('Granulometria');
+        } else {
+            handleNextPage();
+        }
+    };
 
     return (
         <KeyboardAwareScrollView
@@ -54,17 +66,15 @@ const PrepararAmostra: React.FC = () => {
             >
                 <VerificarAparelhagem initialCheckBoxes={AparelhagemG} />
                 <VerificarAparelhagem initialCheckBoxes={Passo1} />
-                <Passo2/>
-                <VerificarAparelhagem initialCheckBoxes={Passo3} />
-
+                <Passo2 />
+                <VerificarAparelhagem initialCheckBoxes={Passo3G} />
+                <Passo3 />
             </Swiper>
-            <ModalSalvarEnsaio
-                visible={modalVisible}
-                onClose={() => setModalVisible(false)}
-            />
             <View style={{ alignItems: 'center', paddingHorizontal: 20, marginBottom: 10 }}>
-                <TouchableOpacity style={styles.ensaioContainer} onPress={handleNextPage}>
-                    <Text style={styles.ensaioConteinerText}>Próximo Passo</Text>
+                <TouchableOpacity style={styles.ensaioContainer} onPress={handleFinishPreparation}>
+                    <Text style={styles.ensaioConteinerText}>
+                        {isFinalStep ? 'Finalizar Preparação' : 'Próximo Passo'}
+                    </Text>
                     <Image style={styles.imgSeta} source={require('../Styles/imagens/seta.png')} />
                 </TouchableOpacity>
             </View>

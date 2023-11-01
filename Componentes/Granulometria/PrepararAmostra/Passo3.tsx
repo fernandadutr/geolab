@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, View, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import { CheckBox,  Input } from 'react-native-elements';
 import styles from '../../../Styles/Componentes';
 import { useEnsaios } from '../../../Context/EnsaiosContext';
@@ -10,7 +10,7 @@ type CheckboxesState = {
     checkbox3: boolean;
 };
 
-const Passo2: React.FC = () => {
+const Passo3: React.FC = () => {
     const [checkboxes, setCheckboxes] = useState<CheckboxesState>({
         checkbox1: false,
         checkbox2: false,
@@ -24,7 +24,7 @@ const Passo2: React.FC = () => {
         });
     };
 
-    const { ensaios, setMassaTotal } = useEnsaios();
+    const { mw, setMw } = useEnsaios();
     const [inputValue, setInputValue] = useState('');
 
     return (
@@ -41,7 +41,7 @@ const Passo2: React.FC = () => {
             </Text>
             <CheckBox
                 key={1}
-                title={'Passe o material na peneira de 76 mm e despreze a parte retida.'}
+                title={'Do material PASSANTE na peneira 2,00mm, reserve 120g para ser utilizado no Peneiramento Fino:'}
                 checked={checkboxes.checkbox1}
                 checkedColor="#A8B444"
                 containerStyle={{ borderRadius: 9, height: 'auto' }}
@@ -49,17 +49,15 @@ const Passo2: React.FC = () => {
             />
             <CheckBox
                 key={2}
-                title={'Do material passado na peneira de 76 mm, tome uma quantidade, observando os grãos maiores, conforme indica a Tabela a seguir:'}
+                title={'Pese o material com resolução de 0,01g e anote a massa a seguir:'}
                 checked={checkboxes.checkbox2}
                 checkedColor="#A8B444"
                 containerStyle={{ borderRadius: 9, height: 'auto' }}
                 onPress={() => handleCheckboxToggle('checkbox2')}
             />
-            <Image style={{ alignSelf: 'center' }} source={require('../PrepararAmostra/tabela1.png')}/>
-
             <CheckBox
                 key={3}
-                title={'Pese a amostra e anote a sua massa no campo a seguir:'}
+                title={'Tome ainda cerca de 100g para três determinações da umidade higroscópica (W). '}
                 checked={checkboxes.checkbox3}
                 checkedColor="#A8B444"
                 containerStyle={{ borderRadius: 9, height: 'auto' }}
@@ -73,11 +71,11 @@ const Passo2: React.FC = () => {
                 value={inputValue}
                 onChangeText={(text) => {
                     setInputValue(text);
-                    setMassaTotal(text);
+                    setMw(text);
                 }}
             />
         </View>
     );
 };
 
-export default Passo2;
+export default Passo3;

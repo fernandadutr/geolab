@@ -4,6 +4,10 @@ import { Ensaio } from '../FakeDB/EnsaiosDB';
 type EnsaiosState = {
     ensaios: Ensaio[];
     setEnsaios: (ensaios: Ensaio[]) => void;
+    massaTotal: string;
+    setMassaTotal: (massaTotal: string) => void;
+    mw: string;
+    setMw: (mw: string) => void;
 };
 
 const EnsaiosContext = createContext<EnsaiosState | undefined>(undefined);
@@ -14,9 +18,11 @@ type EnsaiosProviderProps = {
 
 export const EnsaiosProvider: React.FC<EnsaiosProviderProps> = ({ children }) => {
     const [ensaios, setEnsaios] = useState<Ensaio[]>([]);
+    const [massaTotal, setMassaTotal] = useState('');
+    const [mw, setMw] = useState('');
 
     return (
-        <EnsaiosContext.Provider value={{ ensaios, setEnsaios }}>
+        <EnsaiosContext.Provider value={{ ensaios, setEnsaios, massaTotal, setMassaTotal, mw, setMw }}>
             {children}
         </EnsaiosContext.Provider>
     );
