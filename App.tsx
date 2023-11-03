@@ -9,6 +9,8 @@ import { UserProvider } from './Context/Context';
 import { EnsaiosProvider } from './Context/EnsaiosContext';
 import Granulometria from './Paginas/Granulometria';
 import PrepararAmostra from './Paginas/PrepararAmostra';
+import PeneiramentoFino from './Paginas/PeneiramentoFino';
+import { PeneirasProvider } from './Context/PeneirasContext';
 
 
 export type RootStackParamList = {
@@ -19,6 +21,7 @@ export type RootStackParamList = {
   TeorUmidade: undefined;
   Granulometria: undefined;
   PrepararAmostra: undefined;
+  PeneiramentoFino: undefined;
 };
 
 const Stack = createNativeStackNavigator();
@@ -31,39 +34,45 @@ const MyStack = () => {
   return (
     <UserProvider>
       <EnsaiosProvider>
-        <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen
-              name="Hello"
-              component={Hello}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name='Home'
-              component={HomeScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name='EscolherEnsaio'
-              component={EscolherEnsaio}
-              options={{ title: 'Nova Amostra' }}
-            />
-            <Stack.Screen
-              name='TeorUmidade'
-              component={TeorUmidade}
-              options={{ title: 'Nova Amostra' }}
-            />
-            <Stack.Screen
-              name='Granulometria'
-              component={Granulometria}
-              options={{ title: 'Análise Granulométrica' }}
-            />
-            <Stack.Screen
-              name='PrepararAmostra'
-              component={PrepararAmostra}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
+        <PeneirasProvider>
+          <NavigationContainer>
+            <Stack.Navigator>
+              <Stack.Screen
+                name="Hello"
+                component={Hello}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name='Home'
+                component={HomeScreen}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name='EscolherEnsaio'
+                component={EscolherEnsaio}
+                options={{ title: 'Nova Amostra' }}
+              />
+              <Stack.Screen
+                name='TeorUmidade'
+                component={TeorUmidade}
+                options={{ title: 'Nova Amostra' }}
+              />
+              <Stack.Screen
+                name='Granulometria'
+                component={Granulometria}
+                options={{ title: 'Análise Granulométrica' }}
+              />
+              <Stack.Screen
+                name='PrepararAmostra'
+                component={PrepararAmostra}
+              />
+              <Stack.Screen
+                name='PeneiramentoFino'
+                component={PeneiramentoFino}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </PeneirasProvider>
       </EnsaiosProvider>
     </UserProvider>
   );

@@ -37,12 +37,11 @@ const Passo4: React.FC<Passo4Props> = ({ setDadosPasso4 }) => {
   };
 
   const handleInputChange = () => {
-    // Converte as strings de massa1, massa2 e massa3 para números usando parseFloat
     const massa1Float = parseFloat(massa1.toString());
     const massa2Float = parseFloat(massa2.toString());
     const massa3Float = parseFloat(massa3.toString());
 
-    // Verifique se os valores são números válidos antes de atualizar o estado
+
     if (!isNaN(massa1Float) && !isNaN(massa2Float) && !isNaN(massa3Float)) {
       setDadosPasso4({ massa1: massa1Float, massa2: massa2Float, massa3: massa3Float });
     }

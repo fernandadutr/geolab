@@ -13,7 +13,7 @@ interface ResultadoProps {
     route: keyof RootStackParamList;
 }
 
-type authScreenProp = NativeStackNavigationProp<RootStackParamList, 'Auth'>;
+export type authScreenProp = NativeStackNavigationProp<RootStackParamList, 'Auth'>;
 
 const Granulometria: React.FC = () => {
     const navigation = useNavigation<authScreenProp>();
@@ -52,6 +52,7 @@ const Granulometria: React.FC = () => {
             </View>
             <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginBottom: 10 }}>
                 <TouchableOpacity
+                    onPress={() => navigation.navigate('PeneiramentoFino')}
                     style={{ width: '40%', backgroundColor: '#F2F6CD', alignContent: 'center', borderRadius: 8, padding: 26, marginRight: 10 }}
                 >
                     <Text >Peneiramento
