@@ -78,34 +78,43 @@ export const Passo3G = [
     }
 ]
 
-export const Passo1PF = [
-    {
-        id: 1,
-        label: 'Estufa capaz de manter a temperatura entre 105 a 110ºC.',
-        checked: false
-    },
-    {
-        id: 2,
-        label: 'Peneiras de 1,2mm, 0,6mm, 0,42mm, 0,25mm, 0,15mm e 0,075mm.',
-        checked: false
-    },
-    {
-        id: 3,
-        label: 'Agitador Mecânico de Peneiras',
-        checked: false
-    }
-]
+export const Passo1Checkbox = {
+    title: 'Verifique a Aparelhagem Necessária',
+    checkbox:
+        [
 
-export const Passo2PF = [
-    {
-        id: 1,
-        label: 'Lave o material reservado para o ensaio na peneira de' +
-            '0,075mm em água potável a baixa pressão;',
-        checked: false
-    },
-    {
-        id: 2,
-        label: 'Seque o material retido na peneira de 0,075mm em estufa, a temperatura de 105ºC a 110ºC.',
-        checked: false
-    },
-]
+            {
+                id: 1,
+                label: 'Estufa capaz de manter a temperatura entre 105 a 110ºC.',
+                checked: false
+            },
+            {
+                id: 2,
+                label: 'Peneiras de 1,2mm, 0,6mm, 0,42mm, 0,25mm, 0,15mm e 0,075mm.',
+                checked: false
+            },
+            {
+                id: 3,
+                label: 'Agitador Mecânico de Peneiras',
+                checked: false
+            }
+        ]
+}
+
+export const Passo2Checkbox = {
+    title: 'Passo 1',
+
+    checkbox: [
+        {
+            id: 1,
+            label: 'Lave o material reservado para o ensaio na peneira de' +
+                '0,075mm em água potável a baixa pressão;',
+            checked: false
+        },
+        {
+            id: 2,
+            label: 'Seque o material retido na peneira de 0,075mm em estufa, a temperatura de 105ºC a 110ºC.',
+            checked: false
+        },
+    ]
+}

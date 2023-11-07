@@ -4,10 +4,10 @@ import Swiper from 'react-native-swiper';
 import styles from '../Styles/Componentes';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import VerificarAparelhagem from '../Componentes/TeorUmidade/VerificarAparelhagem';
-import { Passo1PF, Passo2PF } from '../FakeDB/Aparelhagem';
+import { Passo1Checkbox, Passo2Checkbox } from '../FakeDB/Aparelhagem';
 import { authScreenProp } from './Granulometria';
 import { useNavigation } from '@react-navigation/native';
-import Passo3PF from '../Componentes/Granulometria/PeneiramentoFino/Passo3PF';
+import Passo2PF from '../Componentes/Granulometria/PeneiramentoFino/Passo2PF';
 
 const PeneiramentoFino: React.FC = () => {
     const [page, setPage] = useState<number>(0);
@@ -63,9 +63,9 @@ const PeneiramentoFino: React.FC = () => {
                 paginationStyle={{ bottom: 10, alignItems: 'center' }}
                 onIndexChanged={(index) => setPage(index)}
             >
-                <VerificarAparelhagem initialCheckBoxes={Passo1PF} />
-                <VerificarAparelhagem initialCheckBoxes={Passo2PF} />
-                <Passo3PF />
+                <VerificarAparelhagem initialCheckBoxes={Passo1Checkbox} />
+                <VerificarAparelhagem initialCheckBoxes={Passo2Checkbox} />
+                <Passo2PF />
             </Swiper>
             <View style={{ alignItems: 'center', paddingHorizontal: 20, marginBottom: 10 }}>
                 <TouchableOpacity style={styles.ensaioContainer} onPress={handleFinishPreparation}>

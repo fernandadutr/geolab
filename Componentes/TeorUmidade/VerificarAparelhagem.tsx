@@ -9,11 +9,14 @@ interface CheckBoxItem {
 }
 
 interface VerificarAparelhagemProps {
-  initialCheckBoxes: CheckBoxItem[];
+  initialCheckBoxes: {
+    title: string,
+    checkbox: CheckBoxItem[];
+  }
 }
 
 const VerificarAparelhagem: React.FC<VerificarAparelhagemProps> = ({ initialCheckBoxes }) => {
-  const [checkBoxes, setCheckBoxes] = useState(initialCheckBoxes);
+  const [checkBoxes, setCheckBoxes] = useState(initialCheckBoxes.checkbox);
 
   const handleCheckboxToggle = (id: number) => {
     const updatedCheckBoxes = checkBoxes.map((checkbox) => {
@@ -37,7 +40,7 @@ const VerificarAparelhagem: React.FC<VerificarAparelhagemProps> = ({ initialChec
           borderRadius: 20,
         }}
       >
-        Verifique a Aparelhagem Necessária
+        {initialCheckBoxes.title}
       </Text>
       {checkBoxes.map((checkbox) => (
         <CheckBox

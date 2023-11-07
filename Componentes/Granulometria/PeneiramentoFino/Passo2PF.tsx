@@ -9,7 +9,7 @@ type CheckboxesState = {
     checkbox2: boolean;
 };
 
-const Passo3PF: React.FC = () => {
+const Passo2PF: React.FC = () => {
     const [checkboxes, setCheckboxes] = useState<CheckboxesState>({
         checkbox1: false,
         checkbox2: false,
@@ -35,7 +35,7 @@ const Passo3PF: React.FC = () => {
                     borderRadius: 20,
                 }}
             >
-                Passo 3
+                Passo 2
             </Text>
             <CheckBox
                 title="Utilizando o agitador mecânico, passe o material nas peneiras de 1,2mm, 0,6mm, 0,42mm, 0,25mm, 0,15mm e 0,075mm."
@@ -64,4 +64,4 @@ const Passo3PF: React.FC = () => {
     );
 };
 
-export default Passo3PF;
+export default Passo2PF;
