@@ -7,6 +7,8 @@ import VerificarAparelhagem from '../Componentes/TeorUmidade/VerificarAparelhage
 import { PGAparelhagem } from '../FakeDB/Aparelhagem';
 import { authScreenProp } from './Granulometria';
 import { useNavigation } from '@react-navigation/native';
+import Passo1PG from '../Componentes/Granulometria/PeneiramentoGrosso/Passo1PG';
+import Passo2PG from '../Componentes/Granulometria/PeneiramentoGrosso/Passo2PG';
 
 const PeneiramentoGrosso: React.FC = () => {
     const [page, setPage] = useState<number>(0);
@@ -63,6 +65,8 @@ const PeneiramentoGrosso: React.FC = () => {
                 onIndexChanged={(index) => setPage(index)}
             >
                 <VerificarAparelhagem initialCheckBoxes={PGAparelhagem} />
+                <Passo1PG />
+                <Passo2PG/>
             </Swiper>
             <View style={{ alignItems: 'center', paddingHorizontal: 20, marginBottom: 10 }}>
                 <TouchableOpacity style={styles.ensaioContainer} onPress={handleFinishPreparation}>

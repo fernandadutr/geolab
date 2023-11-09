@@ -8,7 +8,9 @@ type Peneira = {
 
 type EnsaiosContextType = {
     ensaiosFino: Peneira[];
+    ensaiosGrosso: Peneira[];
     setMassaTotalFino: (peneiraNumero: number, massaRetida: string) => void;
+    setMassaTotalGrosso: (peneiraNumero: number, massaRetida: string) => void;
 };
 
 const EnsaiosContext = createContext<EnsaiosContextType | undefined>(undefined);
@@ -27,6 +29,15 @@ export const PeneirasProvider: React.FC<EnsaiosProviderProps> = ({ children }) =
         { id: 6, numero: '#0,075', massaRetida: '' },
     ]);
 
+    const [ensaiosGrosso, setEnsaiosGrosso] = useState<Peneira[]>([
+        { id: 7, numero: '#50mm', massaRetida: '' },
+        { id: 8, numero: '#38mm', massaRetida: '' },
+        { id: 9, numero: '#25mm', massaRetida: '' },
+        { id: 10, numero: '#19mm', massaRetida: '' },
+        { id: 11, numero: '#9,5mm', massaRetida: '' },
+        { id: 12, numero: '#4,8mm', massaRetida: '' },
+    ]);
+
     const setMassaTotalFino = (id: number, massaRetida: string) => {
         setEnsaiosFino((prevEnsaios) => {
             const updatedEnsaios = prevEnsaios.map((peneira) => {
@@ -39,8 +50,20 @@ export const PeneirasProvider: React.FC<EnsaiosProviderProps> = ({ children }) =
         });
     };
 
+    const setMassaTotalGrosso = (id: number, massaRetida: string) => {
+        setEnsaiosGrosso((prevEnsaios) => {
+            const updatedEnsaios = prevEnsaios.map((peneira) => {
+                if (peneira.id === id) {
+                    return { ...peneira, massaRetida };
+                }
+                return peneira;
+            });
+            return updatedEnsaios;
+        });
+    };
+
     return (
-        <EnsaiosContext.Provider value={{ ensaiosFino, setMassaTotalFino }}>
+        <EnsaiosContext.Provider value={{ ensaiosFino, ensaiosGrosso, setMassaTotalFino, setMassaTotalGrosso }}>
             {children}
         </EnsaiosContext.Provider>
     );

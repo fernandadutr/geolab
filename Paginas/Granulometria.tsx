@@ -1,6 +1,5 @@
 import React from 'react';
 import { TouchableOpacity, Text, View } from 'react-native';
-import styles from '../Styles/Componentes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootStackParamList } from '../App';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -39,6 +38,7 @@ const Granulometria: React.FC = () => {
             <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginBottom: 10 }}>
 
                 <TouchableOpacity
+                    onPress={() => navigation.navigate('PeneiramentoGrosso')}
                     style={{ width: '40%', backgroundColor: '#F2F6CD', alignContent: 'center', borderRadius: 8, padding: 26, marginRight: 10 }}
                 >
                     <Text >Peneiramento

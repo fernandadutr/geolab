@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { Text, CheckBox } from 'react-native-elements';
 import { ScrollView } from 'react-native';
-import { useEnsaios } from '../../../Context/EnsaiosContext';
-import { TextInput } from 'react-native';
-import styles from '../../../Styles/Componentes';
+import { useEnsaios } from '../../../Context/PeneirasContext';
+import InputPeneira from '../../InputPeneira';
 
 type CheckboxesState = {
     checkbox1: boolean;
     checkbox2: boolean;
 };
 
-const Passo1PG: React.FC = () => {
+const Passo2PG: React.FC = () => {
     const [checkboxes, setCheckboxes] = useState<CheckboxesState>({
         checkbox1: false,
         checkbox2: false,
@@ -23,14 +22,10 @@ const Passo1PG: React.FC = () => {
         });
     };
 
-    const { mg, setMg } = useEnsaios();
-
-    const handleMgChange = (value: string) => {
-        setMg(value);
-    };
+    const { ensaiosGrosso, setMassaTotalGrosso } = useEnsaios();
 
     return (
-        <ScrollView style={{ padding: 20 }}>
+        <ScrollView>
             <Text
                 style={{
                     fontWeight: 'bold',
@@ -40,31 +35,36 @@ const Passo1PG: React.FC = () => {
                     borderRadius: 20,
                 }}
             >
-                Passo 1
+                Passo 2
             </Text>
             <CheckBox
-                title="Lave o material retido na peneira 2,0mm a fim de eliminar o material fino aderente e seque em estufa."
+                title="Utilizando o agitador mecânico, passe o material nas
+                peneiras 50mm, 38mm, 25mm, 19mm, 9,5mm e 4,8mm."
                 checked={checkboxes.checkbox1}
                 checkedColor="#A8B444"
                 containerStyle={{ borderRadius: 9, height: 'auto' }}
                 onPress={() => handleCheckboxToggle('checkbox1')}
             />
             <CheckBox
-                title="Pese o material e anote a sua massa no campo a seguir:"
+                title="Anote as massas RETIDAS em cada peneira abaixo:"
                 checked={checkboxes.checkbox2}
                 checkedColor="#A8B444"
                 containerStyle={{ borderRadius: 9, height: 'auto' }}
                 onPress={() => handleCheckboxToggle('checkbox2')}
             />
-            <TextInput
-                style={styles.textImputEnsaio}
-                value={mg}
-                onChangeText={handleMgChange}
-                placeholder="Massa para Peneiramento Grosso (Mg)"
-                keyboardType="numeric"
-            />
+            {checkboxes.checkbox1 ? (
+                ensaiosGrosso.map((peneira) => (
+                    <InputPeneira
+                        key={peneira.id}
+                        numero={peneira.numero}
+                        id={peneira.id}
+                        massaRetida={peneira.massaRetida}
+                        onMassaRetidaChange={setMassaTotalGrosso}
+                    />
+                ))
+            ) : null}
         </ScrollView>
     );
 };
 
-export default Passo1PG;
+export default Passo2PG;
