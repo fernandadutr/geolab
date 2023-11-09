@@ -118,3 +118,22 @@ export const Passo2Checkbox = {
         },
     ]
 }
+
+export const PGAparelhagem = {
+    title: 'Verifique a Aparelhagem Necessária',
+    checkbox: [
+        {
+            id: 1,
+            label: 'Peneiras de 50mm, 38mm, 25mm, 19,00mm, 9,5mm,' +
+                ' 4,8mm e 2mm.',
+            checked: false
+        },
+        {
+            id: 2,
+            label: 'Agitador Mecânico de Peneiras',
+            checked: false
+        }
+
+    ]
+}
+

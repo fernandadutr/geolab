@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Text, CheckBox } from 'react-native-elements';
 import { ScrollView } from 'react-native';
 import { useEnsaios } from '../../../Context/PeneirasContext';
-import InputPeneira from '../../InputPeneira';
 
 type CheckboxesState = {
     checkbox1: boolean;
@@ -35,31 +34,34 @@ const Passo3PF: React.FC = () => {
                     borderRadius: 20,
                 }}
             >
-                Passo 3
+                CALCULO DA PORCENTAGEM DE PASSANTES
             </Text>
             <CheckBox
-                title="Utilizando o agitador mecânico, passe o material nas peneiras de 1,2mm, 0,6mm, 0,42mm, 0,25mm, 0,15mm e 0,075mm."
+                title="As porcentagens de materiais que passam nas peneiras 
+                de 1,2mm, 0,6mm, 0,42mm, 0,25mm, 0,15mm
+                e 0,075mm, são calculadas a partir da expressão a seguir:"
                 checked={checkboxes.checkbox1}
                 checkedColor="#A8B444"
                 containerStyle={{ borderRadius: 9, height: 'auto' }}
                 onPress={() => handleCheckboxToggle('checkbox1')}
             />
-            <CheckBox
-                title="Anote as massas RETIDAS em cada peneira abaixo:"
-                checked={checkboxes.checkbox2}
-                checkedColor="#A8B444"
-                containerStyle={{ borderRadius: 9, height: 'auto' }}
-                onPress={() => handleCheckboxToggle('checkbox2')}
-            />
-            {ensaiosFino.map((peneira) => (
-                <InputPeneira
-                    key={peneira.id}
-                    numero={peneira.numero}
-                    id={peneira.id}
-                    massaRetida={peneira.massaRetida}
-                    onMassaRetidaChange={setMassaTotalFino}
-                />
-            ))}
+            <Text style={{ padding: 16, borderRadius: 9, backgroundColor: '#E6EAC3' }}>
+                <Text style={{ fontWeight: 'bold', alignSelf: 'flex-end' }}>Qf =</Text>{' '}
+                <Text style={{ fontStyle: 'italic' }}>Mw x 100 - Mr (100+W) x N</Text>
+                {'\n'}
+                <Text style={{ fontWeight: 'bold' }}>  _______________________________</Text>
+                {'\n'}
+                <Text style={{ marginLeft: 40 }}>                    Mw x 100</Text>
+                {'\n\n'}
+                <Text style={{ fontSize: 11 }}>
+
+                    <Text style={{fontWeight: 'bold'}}>Qf</Text> é a porcentagem de material passado em cada peneira;{'\n'}
+                    <Text style={{fontWeight: 'bold'}}>Mw</Text> é a massa do material úmido submetido à sedimentação;{'\n'}
+                    <Text style={{fontWeight: 'bold'}}>Mr</Text> é a massa do material retido acumulado em cada peneira;{'\n'}
+                    <Text style={{fontWeight: 'bold'}}>N</Text> é a porcentagem de material que passa na peneira 2,0mm,{'\n'}
+                    calculada no Peneiramento Grosso.
+                </Text>
+            </Text>
         </ScrollView>
     );
 };

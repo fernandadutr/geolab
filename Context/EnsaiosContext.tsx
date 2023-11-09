@@ -8,6 +8,9 @@ type EnsaiosState = {
     setMassaTotal: (massaTotal: string) => void;
     mw: string;
     setMw: (mw: string) => void;
+    mg: string;
+    setMg: (mg: string) => void;
+
 };
 
 const EnsaiosContext = createContext<EnsaiosState | undefined>(undefined);
@@ -20,9 +23,10 @@ export const EnsaiosProvider: React.FC<EnsaiosProviderProps> = ({ children }) =>
     const [ensaios, setEnsaios] = useState<Ensaio[]>([]);
     const [massaTotal, setMassaTotal] = useState('');
     const [mw, setMw] = useState('');
+    const [mg, setMg] = useState('');
 
     return (
-        <EnsaiosContext.Provider value={{ ensaios, setEnsaios, massaTotal, setMassaTotal, mw, setMw }}>
+        <EnsaiosContext.Provider value={{ ensaios, setEnsaios, massaTotal, setMassaTotal, mw, setMw, mg, setMg }}>
             {children}
         </EnsaiosContext.Provider>
     );

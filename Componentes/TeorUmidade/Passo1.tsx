@@ -9,9 +9,9 @@ interface Passo1Props {
 
 const Passo1: React.FC<Passo1Props> = ({ setDadosPasso1 }) => {
     const [isChecked, setIsChecked] = useState(false);
-    const [massa1, setMassa1] = useState<number | ''>(0); // Inicialize como número ou string vazia
-    const [massa2, setMassa2] = useState<number | ''>(0); // Inicialize como número ou string vazia
-    const [massa3, setMassa3] = useState<number | ''>(0); // Inicialize como número ou string vazia
+    const [massa1, setMassa1] = useState<number | ''>(0); 
+    const [massa2, setMassa2] = useState<number | ''>(0); 
+    const [massa3, setMassa3] = useState<number | ''>(0); 
 
     const handleCheckboxToggle = () => {
         setIsChecked(!isChecked);
@@ -50,7 +50,7 @@ const Passo1: React.FC<Passo1Props> = ({ setDadosPasso1 }) => {
                 keyboardType="numeric"
                 onChangeText={(text) => setMassa1(text !== '' ? parseFloat(text) : '')}
                 style={styles.textImputEnsaio}
-                onBlur={handleInputChange} // Chame a função de validação quando o foco for perdido
+                onBlur={handleInputChange}
             />
             <TextInput
                 placeholder={'Massa Recipiente 2ª Determinação (M3)'}
