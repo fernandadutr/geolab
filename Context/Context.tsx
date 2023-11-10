@@ -4,7 +4,7 @@ type UserState = {
     userName: string;
     email: string;
     setUserName: (name: string) => void;
-    setEmail: (email: string) => void; 
+    setEmail: (email: string) => void;
 };
 
 const UserContext = createContext<UserState | undefined>(undefined);

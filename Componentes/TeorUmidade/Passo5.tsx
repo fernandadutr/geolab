@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Modal, Button } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import ErrorModal from '../ErrorModal';
+import { useEnsaios } from '../../Context/EnsaiosContext';
+
 
 interface Passo5Props {
     dadosPasso1: { massa1: number; massa2: number; massa3: number };
@@ -22,6 +24,7 @@ const Passo5: React.FC<Passo5Props> = ({ dadosPasso1, dadosPasso2, dadosPasso4 }
     const [resultado2, setResultado2] = useState<number | null>(null);
     const [resultado3, setResultado3] = useState<number | null>(null);
     const [modalVisible, setModalVisible] = useState(false);
+    const { setW } = useEnsaios();
 
     const handleCheckboxToggle1 = () => {
         setIsChecked1(!isChecked1);
@@ -54,6 +57,9 @@ const Passo5: React.FC<Passo5Props> = ({ dadosPasso1, dadosPasso2, dadosPasso4 }
         setResultado1(w1);
         setResultado2(w2);
         setResultado3(w3);
+
+        const media = calcularMedia(w1,w2,w3);
+        setW(media);
     };
 
     function calcularMedia(w1: number, w2: number, w3: number) {
