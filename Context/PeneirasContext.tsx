@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 
-type Peneira = {
+export type Peneira = {
     id: number;
     numero: string;
     massaRetida: string;
@@ -30,12 +30,14 @@ export const PeneirasProvider: React.FC<EnsaiosProviderProps> = ({ children }) =
     ]);
 
     const [ensaiosGrosso, setEnsaiosGrosso] = useState<Peneira[]>([
-        { id: 7, numero: '#50mm', massaRetida: '' },
-        { id: 8, numero: '#38mm', massaRetida: '' },
-        { id: 9, numero: '#25mm', massaRetida: '' },
-        { id: 10, numero: '#19mm', massaRetida: '' },
-        { id: 11, numero: '#9,5mm', massaRetida: '' },
-        { id: 12, numero: '#4,8mm', massaRetida: '' },
+        { id: 7, numero: '#50', massaRetida: '' },
+        { id: 8, numero: '#38', massaRetida: '' },
+        { id: 9, numero: '#25', massaRetida: '' },
+        { id: 10, numero: '#19', massaRetida: '' },
+        { id: 11, numero: '#9,5', massaRetida: '' },
+        { id: 12, numero: '#4,8', massaRetida: '' },
+        { id: 13, numero: '#2', massaRetida: '' },
+
     ]);
 
     const setMassaTotalFino = (id: number, massaRetida: string) => {
@@ -69,7 +71,7 @@ export const PeneirasProvider: React.FC<EnsaiosProviderProps> = ({ children }) =
     );
 };
 
-export const useEnsaios = () => {
+export const usePeneiras = () => {
     const context = useContext(EnsaiosContext);
     if (!context) {
         throw Error('useEnsaios deve ser usado dentro de um EnsaiosProvider');

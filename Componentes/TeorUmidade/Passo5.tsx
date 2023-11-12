@@ -95,13 +95,13 @@ const Passo5: React.FC<Passo5Props> = ({ dadosPasso1, dadosPasso2, dadosPasso4 }
             </Text>
             <View style={{ alignItems: 'center', marginVertical: 25 }}>
                 <Text style={{ color: '#5F6811' }}>
-                    1ª Determinação: Teor de Umidade (w) = {resultado1 !== null ? resultado1 : 'Aguardando cálculo'}
+                    1ª Determinação: Teor de Umidade (w) = {resultado1 !== null ? resultado1 +' %': 'Aguardando cálculo'}
                 </Text>
                 <Text style={{ color: '#5F6811' }}>
-                    2ª Determinação: Teor de Umidade (w) = {resultado2 !== null ? resultado2 : 'Aguardando cálculo'}
+                    2ª Determinação: Teor de Umidade (w) = {resultado2 !== null ? resultado2 +' %' : 'Aguardando cálculo'}
                 </Text>
                 <Text style={{ color: '#5F6811' }}>
-                    3ª Determinação: Teor de Umidade (w) = {resultado3 !== null ? resultado3 : 'Aguardando cálculo'}
+                    3ª Determinação: Teor de Umidade (w) = {resultado3 !== null ? resultado3 +' %': 'Aguardando cálculo'}
                 </Text>
             </View>
 
@@ -117,7 +117,7 @@ const Passo5: React.FC<Passo5Props> = ({ dadosPasso1, dadosPasso2, dadosPasso4 }
                     resultado1 !== null ? resultado1 : 0,
                     resultado2 !== null ? resultado2 : 0,
                     resultado3 !== null ? resultado3 : 0
-                )}`}
+                )} %`}
             </Text>
             <TouchableOpacity
                 style={{

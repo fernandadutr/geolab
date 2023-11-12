@@ -37,7 +37,7 @@ const Passo3: React.FC = () => {
                     backgroundColor: '#F2F8C6',
                     borderRadius: 20,
                 }}>
-                Passo 3
+                Passo 4
             </Text>
             <CheckBox
                 key={1}
@@ -65,7 +65,7 @@ const Passo3: React.FC = () => {
             />
 
             <Input
-                placeholder={'Massa Total da Amostra (Mt)'}
+                placeholder={'Massa Material Fino (Mw)'}
                 style={styles.textImputEnsaio}
                 keyboardType="numeric"
                 value={inputValue}

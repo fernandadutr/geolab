@@ -30,6 +30,7 @@ const Granulometria: React.FC = () => {
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
+                onPress={() => navigation.navigate('TeorUmidade')}
                     style={{ width: '40%', backgroundColor: '#F2F6CD', alignContent: 'center', borderRadius: 8, padding: 26 }}
                 >
                     <Text style={{ width: '50%', backgroundColor: '#F2F6CD' }}>Teor de Umidade</Text>

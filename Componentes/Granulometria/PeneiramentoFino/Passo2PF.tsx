@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, CheckBox } from 'react-native-elements';
 import { ScrollView } from 'react-native';
-import { useEnsaios } from '../../../Context/PeneirasContext';
+import { usePeneiras } from '../../../Context/PeneirasContext';
 import InputPeneira from '../../InputPeneira';
 
 type CheckboxesState = {
@@ -22,7 +22,7 @@ const Passo2PF: React.FC = () => {
         });
     };
 
-    const { ensaiosFino, setMassaTotalFino } = useEnsaios();
+    const { ensaiosFino, setMassaTotalFino } = usePeneiras();
 
     return (
         <ScrollView>

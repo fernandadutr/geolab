@@ -24,7 +24,7 @@ const Passo2: React.FC = () => {
         });
     };
 
-    const { ensaios, setMassaTotal } = useEnsaios();
+    const { ensaios, setMt: setMassaTotal } = useEnsaios();
     const [inputValue, setInputValue] = useState('');
 
     return (
@@ -37,7 +37,7 @@ const Passo2: React.FC = () => {
                     backgroundColor: '#F2F8C6',
                     borderRadius: 20,
                 }}>
-                Passo 3
+                Passo 2
             </Text>
             <CheckBox
                 key={1}

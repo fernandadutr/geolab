@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Text, CheckBox } from 'react-native-elements';
-import { ScrollView } from 'react-native';
-import { useEnsaios } from '../../../Context/PeneirasContext';
+import { usePeneiras } from '../../../Context/PeneirasContext';
+import { useEnsaios } from '../../../Context/EnsaiosContext';
+import { ScrollView, View } from 'react-native';
+import PeneiraComponentFino from '../PeneiramentoGrosso/PeneiraFina';
 
 type CheckboxesState = {
     checkbox1: boolean;
@@ -21,7 +23,8 @@ const Passo3PF: React.FC = () => {
         });
     };
 
-    const { ensaiosFino, setMassaTotalFino } = useEnsaios();
+    const { ensaiosFino, setMassaTotalFino } = usePeneiras();
+    const { mw, mg, w, ms, setMs } = useEnsaios();
 
     return (
         <ScrollView>
@@ -55,13 +58,18 @@ const Passo3PF: React.FC = () => {
                 {'\n\n'}
                 <Text style={{ fontSize: 11 }}>
 
-                    <Text style={{fontWeight: 'bold'}}>Qf</Text> é a porcentagem de material passado em cada peneira;{'\n'}
-                    <Text style={{fontWeight: 'bold'}}>Mw</Text> é a massa do material úmido submetido à sedimentação;{'\n'}
-                    <Text style={{fontWeight: 'bold'}}>Mr</Text> é a massa do material retido acumulado em cada peneira;{'\n'}
-                    <Text style={{fontWeight: 'bold'}}>N</Text> é a porcentagem de material que passa na peneira 2,0mm,{'\n'}
+                    <Text style={{ fontWeight: 'bold' }}>Qf</Text> é a porcentagem de material passado em cada peneira;{'\n'}
+                    <Text style={{ fontWeight: 'bold' }}>Mw</Text> é a massa do material úmido submetido à sedimentação;{'\n'}
+                    <Text style={{ fontWeight: 'bold' }}>Mr</Text> é a massa do material retido acumulado em cada peneira;{'\n'}
+                    <Text style={{ fontWeight: 'bold' }}>N</Text> é a porcentagem de material que passa na peneira 2,0mm,{'\n'}
                     calculada no Peneiramento Grosso.
                 </Text>
             </Text>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', marginTop: 20 }}>
+                {checkboxes.checkbox1 && ensaiosFino.map((peneira) => (
+                    <PeneiraComponentFino key={peneira.id} peneira={peneira} ms={ms} />
+                ))}
+            </View>
         </ScrollView>
     );
 };

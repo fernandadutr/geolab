@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, CheckBox } from 'react-native-elements';
+import { Text, CheckBox, Button } from 'react-native-elements';
 import { ScrollView } from 'react-native';
 import { useEnsaios } from '../../../Context/EnsaiosContext';
 
@@ -14,6 +14,8 @@ const Passo3PG: React.FC = () => {
         checkbox2: false,
     });
 
+    const [teste, setTeste] = useState<any>();
+
     const handleCheckboxToggle = (checkboxName: keyof CheckboxesState) => {
         setCheckboxes({
             ...checkboxes,
@@ -21,25 +23,22 @@ const Passo3PG: React.FC = () => {
         });
     };
 
-    const { mw, mg, w, ms, setMs } = useEnsaios();
-
-    useEffect(() => {
-        if (checkboxes.checkbox1) {
-            if (mw && mg && w) {
-                const Mt = parseFloat(mw);
-                const Mg = parseFloat(mg);
-                const W = parseFloat(w);
-
-                if (!isNaN(Mt) && !isNaN(Mg) && !isNaN(W)) {
-                    const resultadoMs = calcularMs(Mt, Mg, W);
-                    setMs(resultadoMs.toFixed(2).toString());
-                }
-            }
-        }
-    }, [checkboxes.checkbox1, mw, mg, w, setMs]);
+    const { mt, mg, w, ms, setMs } = useEnsaios();
 
     const calcularMs = (Mt: number, Mg: number, W: number): number => {
-        return ((Mt - Mg) * 100 + Mg) / (100 + W);
+        return ((((Mt - Mg) / (100 + W)) * 100) + Mg)
+    };
+
+    const handleCalcular = () => {
+        const Mt = 1000;
+        const Mg = 600;
+        const W = 2.4;
+
+        if (!isNaN(Mt) && !isNaN(Mg) && !isNaN(W)) {
+            const resultadoMs = calcularMs(Mt, Mg, W);
+            setMs(resultadoMs.toFixed(2).toString());
+            setTeste(resultadoMs.toFixed(2).toString());
+        }
     };
 
     return (
@@ -53,26 +52,24 @@ const Passo3PG: React.FC = () => {
                     borderRadius: 20,
                 }}
             >
-                Passo 1
+                Passo 3
             </Text>
             <CheckBox
-                title="Para calcular a massa total da amostra seca, utiliza-se
-                a equação a seguir:"
+                title="Para calcular a massa total da amostra seca, utiliza-se a equação a seguir:"
                 checked={checkboxes.checkbox1}
                 checkedColor="#A8B444"
                 containerStyle={{ borderRadius: 9, height: 'auto' }}
                 onPress={() => handleCheckboxToggle('checkbox1')}
             />
             <Text style={{ padding: 16, borderRadius: 9, backgroundColor: '#E6EAC3' }}>
-                <Text style={{ fontWeight: 'bold', alignSelf: 'flex-end' }}>Qf =</Text>{' '}
-                <Text style={{ fontStyle: 'italic' }}>Mw x 100 - Mr (100+W) x N</Text>
+                <Text style={{ fontWeight: 'bold', alignSelf: 'flex-end' }}>Ms =</Text>{' '}
+                <Text style={{ fontStyle: 'italic' }}> (Mt - Mg) x 100 + Mg</Text>
                 {'\n'}
                 <Text style={{ fontWeight: 'bold' }}>  _______________________________</Text>
                 {'\n'}
-                <Text style={{ marginLeft: 40 }}>                    Mw x 100</Text>
+                <Text style={{ marginLeft: 40 }}>                    (100 + W)</Text>
                 {'\n\n'}
                 <Text style={{ fontSize: 11 }}>
-
                     <Text style={{ fontWeight: 'bold' }}>Ms</Text> é a massa total da amostra seca;{'\n'}
                     <Text style={{ fontWeight: 'bold' }}>Mt</Text> é a massa da amostra seca em temperatura ambiente;{'\n'}
                     <Text style={{ fontWeight: 'bold' }}>Mg</Text> é a massa do material seco retido na peneira de 2,00mm; {'\n'}
@@ -80,7 +77,16 @@ const Passo3PG: React.FC = () => {
                     na peneira de 2,00mm, expresso em porcentagem (%);{'\n'}
                 </Text>
             </Text>
-
+            <Button
+                title="Calcular"
+                buttonStyle={{
+                    borderRadius: 100,
+                    backgroundColor: '#A8B444',
+                    paddingVertical: 15,
+                    marginTop: 20,
+                }}
+                onPress={handleCalcular}
+            />
         </ScrollView>
     );
 };
