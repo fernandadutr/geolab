@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Text, CheckBox, Button } from 'react-native-elements';
-import { ScrollView } from 'react-native';
+import { ScrollView, TouchableOpacity, View } from 'react-native';
 import { useEnsaios } from '../../../Context/EnsaiosContext';
 
 type CheckboxesState = {
@@ -77,16 +77,27 @@ const Passo3PG: React.FC = () => {
                     na peneira de 2,00mm, expresso em porcentagem (%);{'\n'}
                 </Text>
             </Text>
-            <Button
-                title="Calcular"
-                buttonStyle={{
-                    borderRadius: 100,
+            <TouchableOpacity
+            onPress={()=> handleCalcular()}
+                style={{
+                    borderRadius: 50,  
                     backgroundColor: '#A8B444',
-                    paddingVertical: 15,
+                    paddingVertical: 35,
+                    width: 100,  
+                    alignSelf: 'center',  
                     marginTop: 20,
-                }}
-                onPress={handleCalcular}
-            />
+                }}>
+                <Text style={{alignSelf: 'center', color: 'white', fontWeight: 'bold' }}>Calcular</Text>
+            </TouchableOpacity>
+
+            {teste && (
+                <View style={{ display: 'flex', flexDirection: 'column', marginTop: 10 }}>
+                    <Text style={{ textAlign: 'center', marginTop: 10, fontSize: 20, color: 'green', }}>
+                        O valor calculado de Ms é:
+                    </Text>
+                    <Text style={{ fontSize: 20, textAlign: 'center' }}> {teste} </Text>
+                </View>
+            )}
         </ScrollView>
     );
 };

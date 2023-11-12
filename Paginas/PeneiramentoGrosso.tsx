@@ -11,12 +11,15 @@ import Passo1PG from '../Componentes/Granulometria/PeneiramentoGrosso/Passo1PG';
 import Passo2PG from '../Componentes/Granulometria/PeneiramentoGrosso/Passo2PG';
 import Passo3PG from '../Componentes/Granulometria/PeneiramentoGrosso/Passo3PG';
 import Passo4PG from '../Componentes/Granulometria/PeneiramentoGrosso/Passo4PG';
+import { usePassosConcluidos } from '../Context/ResultadosContext';
 
 const PeneiramentoGrosso: React.FC = () => {
     const [page, setPage] = useState<number>(0);
     const swiperRef = useRef<Swiper>(null);
     const navigation = useNavigation<authScreenProp>();
     const [isFinalStep, setIsFinalStep] = useState(false);
+    const { setPassoConcluido } = usePassosConcluidos()
+
 
     const handleNextPage = () => {
         if (swiperRef.current) {
@@ -35,6 +38,7 @@ const PeneiramentoGrosso: React.FC = () => {
 
     const handleFinishPreparation = () => {
         if (isFinalStep) {
+            setPassoConcluido('peneiramentoGrosso')
             navigation.navigate('Granulometria');
         } else {
             handleNextPage();

@@ -9,12 +9,14 @@ import Passo2 from '../Componentes/Granulometria/PrepararAmostra/Passo2';
 import Passo3 from '../Componentes/Granulometria/PrepararAmostra/Passo3';
 import { authScreenProp } from './Granulometria';
 import { useNavigation } from '@react-navigation/native';
+import { usePassosConcluidos } from '../Context/ResultadosContext';
 
 const PrepararAmostra: React.FC = () => {
     const [page, setPage] = useState<number>(0);
     const swiperRef = useRef<Swiper>(null);
     const navigation = useNavigation<authScreenProp>();
     const [isFinalStep, setIsFinalStep] = useState(false);
+    const { setPassoConcluido } = usePassosConcluidos()
 
     const handleNextPage = () => {
         if (swiperRef.current) {
@@ -33,6 +35,7 @@ const PrepararAmostra: React.FC = () => {
 
     const handleFinishPreparation = () => {
         if (isFinalStep) {
+            setPassoConcluido('preparacaoAmostra')
             navigation.navigate('Granulometria');
         } else {
             handleNextPage();

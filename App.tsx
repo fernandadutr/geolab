@@ -12,7 +12,7 @@ import PeneiramentoFino from './Paginas/PeneiramentoFino';
 import { PeneirasProvider } from './Context/PeneirasContext';
 import PeneiramentoGrosso from './Paginas/PeneiramentoGrosso';
 import { ResultadosProvider } from './Context/ResultadosContext';
-import GranulometriaChart from './Paginas/Teste';
+import GranulometriaChart from './Paginas/CurvaGranulometrica';
 import Granulometria from './Paginas/Granulometria';
 
 
@@ -26,6 +26,7 @@ export type RootStackParamList = {
   PrepararAmostra: undefined;
   PeneiramentoFino: undefined;
   PeneiramentoGrosso: undefined;
+  CurvaGranulometrica: undefined;
 };
 
 const Stack = createNativeStackNavigator();
@@ -78,6 +79,10 @@ const MyStack = () => {
                 <Stack.Screen
                   name='PeneiramentoGrosso'
                   component={PeneiramentoGrosso}
+                />
+                <Stack.Screen
+                name='CurvaGranulometrica'
+                component={GranulometriaChart}
                 />
               </Stack.Navigator>
             </NavigationContainer>

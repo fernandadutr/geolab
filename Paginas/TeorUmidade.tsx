@@ -12,14 +12,22 @@ import Passo5 from '../Componentes/TeorUmidade/Passo5';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import ModalSalvarEnsaio from '../Componentes/ModalSalvarEnsaio';
 import { AparelhagemTU } from '../FakeDB/Aparelhagem';
+import { usePassosConcluidos } from '../Context/ResultadosContext';
+import { useNavigation } from '@react-navigation/native';
+import { authScreenProp } from './Granulometria';
+
 
 const TeorUmidade: React.FC = () => {
     const [page, setPage] = useState<number>(0);
     const swiperRef = useRef<Swiper>(null);
+    const navigation = useNavigation<authScreenProp>();
     const [dadosPasso1, setDadosPasso1] = useState({ massa1: 0, massa2: 0, massa3: 0 });
     const [dadosPasso2, setDadosPasso2] = useState({ massa1: 0, massa2: 0, massa3: 0 });
     const [dadosPasso4, setDadosPasso4] = useState({ massa1: 0, massa2: 0, massa3: 0 });
     const [modalVisible, setModalVisible] = useState(false);
+    const [isFinalStep, setIsFinalStep] = useState(false);
+    const { preparacaoAmostraConcluido, setPassoConcluido } = usePassosConcluidos()
+
     const [nomeEnsaio, setNomeEnsaio] = useState('');
 
     const handleNextPage = () => {
@@ -28,9 +36,27 @@ const TeorUmidade: React.FC = () => {
             if (nextPage < 6) {
                 swiperRef.current.scrollBy(1);
                 setPage(nextPage);
-            } else if (nextPage === 6) {
-                setModalVisible(true);
+                if (nextPage === 5) {
+                    setIsFinalStep(true);
+                } else {
+                    setIsFinalStep(false);
+                }
             }
+        }
+    };
+
+    const backToGranulometri = () => {
+        setPassoConcluido('teorUmidade')
+        navigation.navigate('Granulometria')
+    }
+
+    const handleFinishTeorUmidade = () => {
+        if (isFinalStep) {
+            preparacaoAmostraConcluido
+                ? backToGranulometri()
+                : setModalVisible(true);
+        } else {
+            handleNextPage();
         }
     };
 
@@ -53,6 +79,7 @@ const TeorUmidade: React.FC = () => {
             <Swiper
                 ref={swiperRef}
                 loop={false}
+                style={{ maxHeight: 700 }}
                 showsPagination={true}
                 dotStyle={{ backgroundColor: '#D9D9D9', width: 10, height: 10 }}
                 activeDotStyle={{ backgroundColor: '#A8B444', width: 10, height: 10 }}
@@ -73,8 +100,10 @@ const TeorUmidade: React.FC = () => {
                 />
             </Swiper>
             <View style={{ alignItems: 'center', paddingHorizontal: 20 }}>
-                <TouchableOpacity style={styles.ensaioContainer} onPress={handleNextPage}>
-                    <Text style={styles.ensaioConteinerText}>Próximo Passo</Text>
+                <TouchableOpacity style={styles.ensaioContainer} onPress={handleFinishTeorUmidade}>
+                    <Text style={styles.ensaioConteinerText}>
+                        {isFinalStep ? 'Finalizar Teor de Umidade' : 'Próximo Passo'}
+                    </Text>
                     <Image style={styles.imgSeta} source={require('../Styles/imagens/seta.png')} />
                 </TouchableOpacity>
             </View>

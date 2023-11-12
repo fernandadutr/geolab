@@ -9,12 +9,16 @@ import { authScreenProp } from './Granulometria';
 import { useNavigation } from '@react-navigation/native';
 import Passo2PF from '../Componentes/Granulometria/PeneiramentoFino/Passo2PF';
 import Passo3PF from '../Componentes/Granulometria/PeneiramentoFino/Passo3PF';
+import { usePassosConcluidos } from '../Context/ResultadosContext';
+
 
 const PeneiramentoFino: React.FC = () => {
     const [page, setPage] = useState<number>(0);
     const swiperRef = useRef<Swiper>(null);
     const navigation = useNavigation<authScreenProp>();
     const [isFinalStep, setIsFinalStep] = useState(false);
+    const { setPassoConcluido } = usePassosConcluidos()
+
 
     const handleNextPage = () => {
         if (swiperRef.current) {
@@ -33,6 +37,7 @@ const PeneiramentoFino: React.FC = () => {
 
     const handleFinishPreparation = () => {
         if (isFinalStep) {
+            setPassoConcluido('peneiramentoFino')
             navigation.navigate('Granulometria');
         } else {
             handleNextPage();
