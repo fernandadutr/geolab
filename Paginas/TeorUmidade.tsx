@@ -21,9 +21,6 @@ const TeorUmidade: React.FC = () => {
     const [page, setPage] = useState<number>(0);
     const swiperRef = useRef<Swiper>(null);
     const navigation = useNavigation<authScreenProp>();
-    const [dadosPasso1, setDadosPasso1] = useState({ massa1: 0, massa2: 0, massa3: 0 });
-    const [dadosPasso2, setDadosPasso2] = useState({ massa1: 0, massa2: 0, massa3: 0 });
-    const [dadosPasso4, setDadosPasso4] = useState({ massa1: 0, massa2: 0, massa3: 0 });
     const [modalVisible, setModalVisible] = useState(false);
     const [isFinalStep, setIsFinalStep] = useState(false);
     const { preparacaoAmostraConcluido, setPassoConcluido } = usePassosConcluidos()
@@ -87,17 +84,13 @@ const TeorUmidade: React.FC = () => {
                 onIndexChanged={(index) => setPage(index)}
             >
                 <VerificarAparelhagem initialCheckBoxes={AparelhagemTU} />
-                <Passo1 setDadosPasso1={setDadosPasso1} />
+                <Passo1 />
                 <ScrollView>
-                    <Passo2 setDadosPasso={setDadosPasso2} />
+                    <Passo2 />
                 </ScrollView>
                 <Passo3 />
-                <Passo4 setDadosPasso4={setDadosPasso4} />
-                <Passo5
-                    dadosPasso1={dadosPasso1}
-                    dadosPasso2={dadosPasso2}
-                    dadosPasso4={dadosPasso4}
-                />
+                <Passo4 />
+                <Passo5 />
             </Swiper>
             <View style={{ alignItems: 'center', paddingHorizontal: 20 }}>
                 <TouchableOpacity style={styles.ensaioContainer} onPress={handleFinishTeorUmidade}>

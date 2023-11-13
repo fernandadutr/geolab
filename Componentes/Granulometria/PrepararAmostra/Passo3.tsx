@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
-import { CheckBox,  Input } from 'react-native-elements';
+import { CheckBox, Input } from 'react-native-elements';
 import styles from '../../../Styles/Componentes';
 import { useEnsaios } from '../../../Context/EnsaiosContext';
 
@@ -55,15 +55,6 @@ const Passo3: React.FC = () => {
                 containerStyle={{ borderRadius: 9, height: 'auto' }}
                 onPress={() => handleCheckboxToggle('checkbox2')}
             />
-            <CheckBox
-                key={3}
-                title={'Tome ainda cerca de 100g para três determinações da umidade higroscópica (W). '}
-                checked={checkboxes.checkbox3}
-                checkedColor="#A8B444"
-                containerStyle={{ borderRadius: 9, height: 'auto' }}
-                onPress={() => handleCheckboxToggle('checkbox3')}
-            />
-
             <Input
                 placeholder={'Massa Material Fino (Mw)'}
                 style={styles.textImputEnsaio}
@@ -74,6 +65,15 @@ const Passo3: React.FC = () => {
                     setMw(text);
                 }}
             />
+            <CheckBox
+                key={3}
+                title={'Tome ainda cerca de 100g para três determinações da umidade higroscópica (W). '}
+                checked={checkboxes.checkbox3}
+                checkedColor="#A8B444"
+                containerStyle={{ borderRadius: 9, height: 'auto' }}
+                onPress={() => handleCheckboxToggle('checkbox3')}
+            />
+
         </View>
     );
 };

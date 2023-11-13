@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import { View, Text, TextInput } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import styles from '../../Styles/Componentes';
+import { useResultados } from '../../Context/ResultadosContext';
 
-interface Passo4Props {
-  setDadosPasso4: (data: { massa1: number; massa2: number; massa3: number }) => void;
-}
-
-const Passo4: React.FC<Passo4Props> = ({ setDadosPasso4 }) => {
+const Passo4: React.FC = () => {
+  const { setDados3 } = useResultados(); // Utilizando o hook do contexto
   const [checkBoxes, setCheckBoxes] = useState([
     {
       id: 1,
@@ -21,9 +19,9 @@ const Passo4: React.FC<Passo4Props> = ({ setDadosPasso4 }) => {
     },
   ]);
 
-  const [massa1, setMassa1] = useState<number | ''>(0);
-  const [massa2, setMassa2] = useState<number | ''>(0);
-  const [massa3, setMassa3] = useState<number | ''>(0);
+  const [massa1, setMassa1] = useState('');
+  const [massa2, setMassa2] = useState('');
+  const [massa3, setMassa3] = useState('');
 
   const handleCheckboxToggle = (id: number) => {
     const updatedCheckBoxes = checkBoxes.map((checkbox) => {
@@ -37,14 +35,11 @@ const Passo4: React.FC<Passo4Props> = ({ setDadosPasso4 }) => {
   };
 
   const handleInputChange = () => {
-    const massa1Float = parseFloat(massa1.toString());
-    const massa2Float = parseFloat(massa2.toString());
-    const massa3Float = parseFloat(massa3.toString());
+    const massa1C = parseFloat(massa1);
+    const massa2C = parseFloat(massa2);
+    const massa3C = parseFloat(massa3);
 
-
-    if (!isNaN(massa1Float) && !isNaN(massa2Float) && !isNaN(massa3Float)) {
-      setDadosPasso4({ massa1: massa1Float, massa2: massa2Float, massa3: massa3Float });
-    }
+    setDados3({ massa1: massa1C, massa2: massa2C, massa3: massa3C });
   };
 
   return (
@@ -71,25 +66,25 @@ const Passo4: React.FC<Passo4Props> = ({ setDadosPasso4 }) => {
       ))}
       <TextInput
         placeholder={'Massa Recipiente 1ª Determinação (M2)'}
-        value={massa1 !== '' ? massa1.toString() : ''}
+        value={massa1}
         keyboardType="numeric"
-        onChangeText={(text) => setMassa1(text !== '' ? parseFloat(text) : '')}
+        onChangeText={(text) => setMassa1(text)}
         style={styles.textImputEnsaio}
         onBlur={handleInputChange}
       />
       <TextInput
         placeholder={'Massa Recipiente 2ª Determinação (M2)'}
-        value={massa2 !== '' ? massa2.toString() : ''}
+        value={massa2}
         keyboardType="numeric"
-        onChangeText={(text) => setMassa2(text !== '' ? parseFloat(text) : '')}
+        onChangeText={(text) => setMassa2(text)}
         style={styles.textImputEnsaio}
         onBlur={handleInputChange}
       />
       <TextInput
         placeholder={'Massa Recipiente 3ª Determinação (M2)'}
-        value={massa3 !== '' ? massa3.toString() : ''}
+        value={massa3}
         keyboardType="numeric"
-        onChangeText={(text) => setMassa3(text !== '' ? parseFloat(text) : '')}
+        onChangeText={(text) => setMassa3(text)}
         style={styles.textImputEnsaio}
         onBlur={handleInputChange}
       />

@@ -9,6 +9,12 @@ export type PeneiraResultado = {
 type ResultadosContextType = {
   resultados: PeneiraResultado[];
   setResultadoPeneira: (peneiraId: number, numero: string, resultado: string) => void;
+  dados1: { massa1: number; massa2: number; massa3: number };
+  dados2: { massa1: number; massa2: number; massa3: number };
+  dados3: { massa1: number; massa2: number; massa3: number };
+  setDados1: (novosDados: { massa1: number; massa2: number; massa3: number }) => void;
+  setDados2: (novosDados: { massa1: number; massa2: number; massa3: number }) => void;
+  setDados3: (novosDados: { massa1: number; massa2: number; massa3: number }) => void;
 };
 
 type PassosConcluidosContextType = {
@@ -34,13 +40,24 @@ export const ResultadosProvider: React.FC<ResultadosPeneirasProviderProps> = ({ 
   const [peneiramentoGrossoConcluido, setPeneiramentoGrossoConcluido] = useState<boolean>(false);
   const [sedimentacaoConcluido, setSedimentacaoConcluido] = useState<boolean>(false);
   const [peneiramentoFinoConcluido, setPeneiramentoFinoConcluido] = useState<boolean>(false);
+  const [dados1, setDados1] = useState({ massa1: 0, massa2: 0, massa3: 0 });
+  const [dados2, setDados2] = useState({ massa1: 0, massa2: 0, massa3: 0 });
+  const [dados3, setDados3] = useState({ massa1: 0, massa2: 0, massa3: 0 });
 
-  const setResultado = (peneiraId: number, numero: string, resultado: string) => {
+  const setResultadoPeneira = (peneiraId: number, numero: string, resultado: string) => {
     setResultados((prevResultados) => [
       ...prevResultados,
-      { peneiraId, numero, resultado },
+      {
+        peneiraId,
+        numero,
+        resultado,
+        dados1: { ...dados1 },
+        dados2: { ...dados2 },
+        dados3: { ...dados3 },
+      },
     ]);
   };
+  
 
   const setPassoConcluido = (passo: string) => {
     switch (passo) {
@@ -65,7 +82,18 @@ export const ResultadosProvider: React.FC<ResultadosPeneirasProviderProps> = ({ 
   };
 
   return (
-    <ResultadosContext.Provider value={{ resultados, setResultadoPeneira: setResultado }}>
+    <ResultadosContext.Provider
+      value={{
+        resultados,
+        setResultadoPeneira,
+        dados1,
+        dados2,
+        dados3,
+        setDados1,
+        setDados2,
+        setDados3,
+      }}
+    >
       <PassosConcluidosContext.Provider
         value={{
           preparacaoAmostraConcluido,
@@ -97,3 +125,4 @@ export const usePassosConcluidos = () => {
   }
   return context;
 };
+''

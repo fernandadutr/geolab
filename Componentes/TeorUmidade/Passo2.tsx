@@ -1,20 +1,19 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, Image } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import styles from '../../Styles/Componentes';
+import { useResultados } from '../../Context/ResultadosContext';
 
-interface PassoProps {
-    setDadosPasso: Dispatch<SetStateAction<{ massa1: number; massa2: number; massa3: number }>>;
-}
+const Passo: React.FC = () => {
+    const { setDados2 } = useResultados(); // Corrigido para setDados1
 
-const Passo: React.FC<PassoProps> = ({ setDadosPasso }) => {
     const [isChecked1, setIsChecked1] = useState(false);
     const [isChecked2, setIsChecked2] = useState(false);
     const [isChecked3, setIsChecked3] = useState(false);
 
-    const [massaRecipiente1, setMassaRecipiente1] = useState<number | ''>(0);
-    const [massaRecipiente2, setMassaRecipiente2] = useState<number | ''>(0);
-    const [massaRecipiente3, setMassaRecipiente3] = useState<number | ''>(0);
+    const [massaRecipiente1, setMassaRecipiente1] = useState('');
+    const [massaRecipiente2, setMassaRecipiente2] = useState('');
+    const [massaRecipiente3, setMassaRecipiente3] = useState('');
 
     const handleCheckboxToggle1 = () => {
         setIsChecked1(!isChecked1);
@@ -29,13 +28,11 @@ const Passo: React.FC<PassoProps> = ({ setDadosPasso }) => {
     };
 
     const handleInputChange = () => {
-        if (typeof massaRecipiente1 === 'number' && typeof massaRecipiente2 === 'number' && typeof massaRecipiente3 === 'number') {
-            setDadosPasso({
-                massa1: massaRecipiente1,
-                massa2: massaRecipiente2,
-                massa3: massaRecipiente3
-            });
-        }
+        const massa1C = parseFloat(massaRecipiente1);
+        const massa2C = parseFloat(massaRecipiente2);
+        const massa3C = parseFloat(massaRecipiente3);
+
+        setDados2({ massa1: massa1C, massa2: massa2C, massa3: massa3C }); // Corrigido para setDados1
     };
 
     return (
@@ -48,7 +45,7 @@ const Passo: React.FC<PassoProps> = ({ setDadosPasso }) => {
                     backgroundColor: '#F2F8C6',
                     borderRadius: 20,
                 }}>
-                Passo
+                Passo 2
             </Text>
             <CheckBox
                 title={'Determine visualmente os maiores grãos contidos na amostra.'}
@@ -83,24 +80,24 @@ const Passo: React.FC<PassoProps> = ({ setDadosPasso }) => {
                 placeholder={'Massa Recipiente 1ª Determinação (M1)'}
                 style={styles.textImputEnsaio}
                 keyboardType="numeric"
-                value={massaRecipiente1 !== '' ? massaRecipiente1.toString() : ''}
-                onChangeText={(text) => setMassaRecipiente1(text !== '' ? parseFloat(text) : '')}
+                value={massaRecipiente1}
+                onChangeText={(text) => setMassaRecipiente1(text)}
                 onBlur={handleInputChange}
             />
             <TextInput
                 placeholder={'Massa Recipiente 2ª Determinação (M1)'}
                 style={styles.textImputEnsaio}
                 keyboardType="numeric"
-                value={massaRecipiente2 !== '' ? massaRecipiente2.toString() : ''}
-                onChangeText={(text) => setMassaRecipiente2(text !== '' ? parseFloat(text) : '')}
+                value={massaRecipiente2}
+                onChangeText={(text) => setMassaRecipiente2(text)}
                 onBlur={handleInputChange}
             />
             <TextInput
                 placeholder={'Massa Recipiente 3ª Determinação (M1)'}
                 style={styles.textImputEnsaio}
                 keyboardType="numeric"
-                value={massaRecipiente3 !== '' ? massaRecipiente3.toString() : ''}
-                onChangeText={(text) => setMassaRecipiente3(text !== '' ? parseFloat(text) : '')}
+                value={massaRecipiente3}
+                onChangeText={(text) => setMassaRecipiente3(text)}
                 onBlur={handleInputChange}
             />
         </View>

@@ -30,9 +30,9 @@ const Passo3PG: React.FC = () => {
     };
 
     const handleCalcular = () => {
-        const Mt = 1000;
-        const Mg = 600;
-        const W = 2.4;
+        const Mt = parseFloat(mt);
+        const Mg = parseFloat(mg);
+        const W = parseFloat(w);
 
         if (!isNaN(Mt) && !isNaN(Mg) && !isNaN(W)) {
             const resultadoMs = calcularMs(Mt, Mg, W);
