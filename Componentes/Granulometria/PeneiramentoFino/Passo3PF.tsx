@@ -64,10 +64,11 @@ const Passo3PF: React.FC = () => {
                     <Text style={{ fontWeight: 'bold' }}>N</Text> é a porcentagem de material que passa na peneira 2,0mm,{'\n'}
                     calculada no Peneiramento Grosso.
                 </Text>
+                <Text>{ensaiosFino[1].massaRetida}</Text>
             </Text>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', marginTop: 20 }}>
                 {checkboxes.checkbox1 && ensaiosFino.map((peneira) => (
-                    <PeneiraComponentFino key={peneira.id} peneira={peneira} ms={ms} />
+                    <PeneiraComponentFino key={peneira.id} peneira={peneira} ms={peneira.massaRetida} />
                 ))}
             </View>
         </ScrollView>

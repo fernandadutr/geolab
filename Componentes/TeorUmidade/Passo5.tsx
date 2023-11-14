@@ -8,7 +8,7 @@ import { useEnsaios } from '../../Context/EnsaiosContext';
 
 const Passo5: React.FC = () => {
     const { dados1, dados2, dados3 } = useResultados();
-    const { setW } = useEnsaios()
+    const { w, setW } = useEnsaios()
     const [isChecked1, setIsChecked1] = useState(false);
     const [isChecked2, setIsChecked2] = useState(false);
     const [resultado1, setResultado1] = useState<number | null>(null);
@@ -27,7 +27,8 @@ const Passo5: React.FC = () => {
     const handleCheckboxToggle2 = () => {
         setIsChecked2(!isChecked2);
         if (resultado1 != null && resultado2 != null && resultado3 != null) {
-            return calcularMedia(resultado1, resultado2, resultado3)
+             calcularMedia(resultado1, resultado2, resultado3)
+             return setW(wx)
         }
     };
 
@@ -98,6 +99,7 @@ const Passo5: React.FC = () => {
                 checkedColor="#A8B444"
                 containerStyle={{ borderRadius: 9 }}
             />
+            <Text>{w}</Text>
             <Text style={{ textAlign: 'center' }}>
                 {`Teor de Umidade da Amostra (w) = ${wx} %`}
             </Text>

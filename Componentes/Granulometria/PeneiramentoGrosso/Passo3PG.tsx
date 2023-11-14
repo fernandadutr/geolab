@@ -23,7 +23,7 @@ const Passo3PG: React.FC = () => {
         });
     };
 
-    const { mt, mg, w, ms, setMs } = useEnsaios();
+    const { mt, mg, w, setMs } = useEnsaios();
 
     const calcularMs = (Mt: number, Mg: number, W: number): number => {
         return ((((Mt - Mg) / (100 + W)) * 100) + Mg)
@@ -90,14 +90,14 @@ const Passo3PG: React.FC = () => {
                 <Text style={{alignSelf: 'center', color: 'white', fontWeight: 'bold' }}>Calcular</Text>
             </TouchableOpacity>
 
-            {teste && (
+            
                 <View style={{ display: 'flex', flexDirection: 'column', marginTop: 10 }}>
                     <Text style={{ textAlign: 'center', marginTop: 10, fontSize: 20, color: 'green', }}>
                         O valor calculado de Ms é:
                     </Text>
-                    <Text style={{ fontSize: 20, textAlign: 'center' }}> {teste} </Text>
+                    <Text style={{ fontSize: 20, textAlign: 'center' }}> {w} </Text>
                 </View>
-            )}
+        
         </ScrollView>
     );
 };

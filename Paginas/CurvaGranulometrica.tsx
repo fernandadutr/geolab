@@ -8,10 +8,14 @@ const GranulometriaChart = () => {
 
     // Pontos de dados para a curva granulométrica
     const dataPoints = [
+        { x: 0.6, y: 92.16 },
+        { x: 1.2, y: 94.68 },
         { x: 2, y: 96.76 },
         { x: 4.76, y: 99.94 },
         { x: 19.1, y: 100 },
+        { x: 25.4, y: 100 },
         { x: 38.1, y: 100 },
+        { x: 50.81, y: 100 },
         { x: 76.2, y: 100 },
     ];
 

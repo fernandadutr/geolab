@@ -62,7 +62,7 @@ const Passo4PG: React.FC = () => {
             </Text>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', marginTop: 20 }}>
                 {ensaiosGrosso.map((peneira) => (
-                    <PeneiraComponent key={peneira.id} peneira={peneira} ms={ms} />
+                    <PeneiraComponent key={peneira.id} peneira={peneira} ms={ms} teste={checkboxes.checkbox1} />
                 ))}
             </View>
         </ScrollView>

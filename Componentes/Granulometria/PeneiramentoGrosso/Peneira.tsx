@@ -6,10 +6,11 @@ import { useResultados } from '../../../Context/ResultadosContext';
 interface PeneiraComponentProps {
   peneira: Peneira;
   ms: string;
+  teste: boolean;
 }
 
-const PeneiraComponent: React.FC<PeneiraComponentProps> = ({ peneira, ms }) => {
-  const { setResultadoPeneira } = useResultados();
+const PeneiraComponent: React.FC<PeneiraComponentProps> = ({ peneira, ms, teste }) => {
+  const { resultados, setResultadoPeneira } = useResultados();
   const [resultado, setResultado] = useState<any>('');
 
   const calculoTeste = (ms: number, mr: number) => {
@@ -22,7 +23,7 @@ const PeneiraComponent: React.FC<PeneiraComponentProps> = ({ peneira, ms }) => {
     const resultadoCalculado = calculoTeste(parseFloat(ms), parseFloat(peneira.massaRetida));
     setResultado(resultadoCalculado);
     setResultadoPeneira(peneira.id, peneira.numero, resultadoCalculado);
-  }, [ms]);  
+  }, [teste]);  
 
 
   return (

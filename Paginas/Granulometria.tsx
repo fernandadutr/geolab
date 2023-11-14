@@ -25,7 +25,7 @@ const Granulometria: React.FC = () => {
           onPress={() => navigation.navigate('PrepararAmostra')}
           style={{
             width: '40%',
-            backgroundColor:'#F2F6CD',
+            backgroundColor: '#F2F6CD',
             alignContent: 'center',
             borderRadius: 8,
             padding: 26,
@@ -94,12 +94,12 @@ const Granulometria: React.FC = () => {
         <TouchableOpacity
           style={{
             width: '40%',
-            backgroundColor: peneiramentoFinoConcluido ? '#F2F6CD' : '#F1F5F4',
+            backgroundColor: peneiramentoGrossoConcluido ? '#F2F6CD' : '#F1F5F4',
             alignContent: 'center',
             borderRadius: 8,
             padding: 26,
           }}
-          disabled={!peneiramentoFinoConcluido}
+          disabled={!peneiramentoGrossoConcluido}
           onPress={() => navigation.navigate('CurvaGranulometrica')}
         >
           <Text>Gerar Curva Granulométrica</Text>
