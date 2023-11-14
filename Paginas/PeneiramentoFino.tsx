@@ -23,10 +23,10 @@ const PeneiramentoFino: React.FC = () => {
     const handleNextPage = () => {
         if (swiperRef.current) {
             const nextPage = page + 1;
-            if (nextPage < 5) {
+            if (nextPage < 4) {
                 swiperRef.current.scrollBy(1);
                 setPage(nextPage);
-                if (nextPage === 4) {
+                if (nextPage === 3) {
                     setIsFinalStep(true);
                 } else {
                     setIsFinalStep(false);

@@ -14,6 +14,7 @@ import PeneiramentoGrosso from './Paginas/PeneiramentoGrosso';
 import { ResultadosProvider } from './Context/ResultadosContext';
 import GranulometriaChart from './Paginas/CurvaGranulometrica';
 import Granulometria from './Paginas/Granulometria';
+import { ResultsProvider } from './Context/ResultsContext';
 
 
 export type RootStackParamList = {
@@ -39,55 +40,57 @@ const MyStack = () => {
   return (
     <UserProvider>
       <EnsaiosProvider>
-        <PeneirasProvider>
-          <ResultadosProvider>
-            <NavigationContainer>
-              <Stack.Navigator>
-                <Stack.Screen
-                  name="Hello"
-                  component={Hello}
-                  options={{ headerShown: false }}
-                />
-                <Stack.Screen
-                  name='Home'
-                  component={HomeScreen}
-                  options={{ headerShown: false }}
-                />
-                <Stack.Screen
-                  name='EscolherEnsaio'
-                  component={EscolherEnsaio}
-                  options={{ title: 'Nova Amostra' }}
-                />
-                <Stack.Screen
-                  name='TeorUmidade'
-                  component={TeorUmidade}
-                  options={{ title: 'Nova Amostra' }}
-                />
-                <Stack.Screen
-                  name='Granulometria'
-                  component={Granulometria}
-                  options={{ title: 'Análise Granulométrica' }}
-                />
-                <Stack.Screen
-                  name='PrepararAmostra'
-                  component={PrepararAmostra}
-                />
-                <Stack.Screen
-                  name='PeneiramentoFino'
-                  component={PeneiramentoFino}
-                />
-                <Stack.Screen
-                  name='PeneiramentoGrosso'
-                  component={PeneiramentoGrosso}
-                />
-                <Stack.Screen
-                name='CurvaGranulometrica'
-                component={GranulometriaChart}
-                />
-              </Stack.Navigator>
-            </NavigationContainer>
-          </ResultadosProvider>
-        </PeneirasProvider>
+        <ResultsProvider>
+          <PeneirasProvider>
+            <ResultadosProvider>
+              <NavigationContainer>
+                <Stack.Navigator>
+                  <Stack.Screen
+                    name="Hello"
+                    component={Hello}
+                    options={{ headerShown: false }}
+                  />
+                  <Stack.Screen
+                    name='Home'
+                    component={HomeScreen}
+                    options={{ headerShown: false }}
+                  />
+                  <Stack.Screen
+                    name='EscolherEnsaio'
+                    component={EscolherEnsaio}
+                    options={{ title: 'Nova Amostra' }}
+                  />
+                  <Stack.Screen
+                    name='TeorUmidade'
+                    component={TeorUmidade}
+                    options={{ title: 'Nova Amostra' }}
+                  />
+                  <Stack.Screen
+                    name='Granulometria'
+                    component={Granulometria}
+                    options={{ title: 'Análise Granulométrica' }}
+                  />
+                  <Stack.Screen
+                    name='PrepararAmostra'
+                    component={PrepararAmostra}
+                  />
+                  <Stack.Screen
+                    name='PeneiramentoFino'
+                    component={PeneiramentoFino}
+                  />
+                  <Stack.Screen
+                    name='PeneiramentoGrosso'
+                    component={PeneiramentoGrosso}
+                  />
+                  <Stack.Screen
+                    name='CurvaGranulometrica'
+                    component={GranulometriaChart}
+                  />
+                </Stack.Navigator>
+              </NavigationContainer>
+            </ResultadosProvider>
+          </PeneirasProvider>
+        </ResultsProvider>
       </EnsaiosProvider>
     </UserProvider>
   );
