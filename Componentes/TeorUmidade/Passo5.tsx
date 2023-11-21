@@ -27,8 +27,8 @@ const Passo5: React.FC = () => {
     const handleCheckboxToggle2 = () => {
         setIsChecked2(!isChecked2);
         if (resultado1 != null && resultado2 != null && resultado3 != null) {
-             calcularMedia(resultado1, resultado2, resultado3)
-             return setW(wx)
+            calcularMedia(resultado1, resultado2, resultado3)
+            return setW(wx)
         }
     };
 
@@ -92,17 +92,6 @@ const Passo5: React.FC = () => {
                 </Text>
             </View>
 
-            <CheckBox
-                title={'O teor de umidade da amostra é dado pela média das determinações efetuadas:'}
-                checked={isChecked2}
-                onPress={handleCheckboxToggle2}
-                checkedColor="#A8B444"
-                containerStyle={{ borderRadius: 9 }}
-            />
-            <Text>{w}</Text>
-            <Text style={{ textAlign: 'center' }}>
-                {`Teor de Umidade da Amostra (w) = ${wx} %`}
-            </Text>
             <TouchableOpacity
                 style={{
                     marginVertical: 20,
@@ -114,6 +103,16 @@ const Passo5: React.FC = () => {
                 onPress={calcularDeterminacoes}>
                 <Text style={{ color: 'white', fontSize: 18 }}>Obter Determinações</Text>
             </TouchableOpacity>
+            <CheckBox
+                title={'O teor de umidade da amostra é dado pela média das determinações efetuadas:'}
+                checked={isChecked2}
+                onPress={handleCheckboxToggle2}
+                checkedColor="#A8B444"
+                containerStyle={{ borderRadius: 9 }}
+            />
+            <Text style={{ textAlign: 'center' }}>
+                {`Teor de Umidade da Amostra (w) = ${wx} %`}
+            </Text>
             <ErrorModal isVisible={false} message={'Opa! Você esqueceu algum dado.'} onClose={() => { }} />
         </View>
     );

@@ -14,7 +14,7 @@ const PeneiraComponentFino: React.FC<PeneiraComponentFinoProps> = ({ peneira, ms
     const { w, mw } = useEnsaios();
     const { resultados } = useResultsContext();
 
-    const valorN = resultados.find((item) => item.Numero === '#2')?.resultado || '0';
+    const valorN = resultados.find((item) => item.id === 2)?.resultado || '0';
     const nNumero = parseFloat(valorN);
 
     useEffect(() => {

@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export type PeneiraResultado = {
   peneiraId: number;
@@ -44,20 +45,43 @@ export const ResultadosProvider: React.FC<ResultadosPeneirasProviderProps> = ({ 
   const [dados2, setDados2] = useState({ massa1: 0, massa2: 0, massa3: 0 });
   const [dados3, setDados3] = useState({ massa1: 0, massa2: 0, massa3: 0 });
 
-  const setResultadoPeneira = (peneiraId: number, numero: string, resultado: string) => {
-    setResultados((prevResultados) => [
-      ...prevResultados,
-      {
-        peneiraId,
-        numero,
-        resultado,
-        dados1: { ...dados1 },
-        dados2: { ...dados2 },
-        dados3: { ...dados3 },
-      },
-    ]);
+  useEffect(() => {
+    const loadResultados = async () => {
+      try {
+        const storedResultados = await AsyncStorage.getItem('resultados');
+        const loadedResultados = storedResultados ? JSON.parse(storedResultados) : [];
+        setResultados(loadedResultados);
+      } catch (error) {
+        console.error('Erro ao carregar resultados do AsyncStorage:', error);
+      }
+    };
+
+    loadResultados();
+  }, []);
+
+  const setResultadoPeneira = async (peneiraId: number, numero: string, resultado: string) => {
+    try {
+      const prevResultados = await AsyncStorage.getItem('resultados');
+      const existingResultados = prevResultados ? JSON.parse(prevResultados) : [];
+
+      const newResultados = [
+        ...existingResultados,
+        {
+          peneiraId,
+          numero,
+          resultado,
+          dados1: { ...dados1 },
+          dados2: { ...dados2 },
+          dados3: { ...dados3 },
+        },
+      ];
+
+      await AsyncStorage.setItem('resultados', JSON.stringify(newResultados));
+      setResultados(newResultados);
+    } catch (error) {
+      console.error('Erro ao salvar resultado no AsyncStorage:', error);
+    }
   };
-  
 
   const setPassoConcluido = (passo: string) => {
     switch (passo) {

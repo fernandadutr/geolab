@@ -21,22 +21,22 @@ type EnsaiosProviderProps = {
 
 export const PeneirasProvider: React.FC<EnsaiosProviderProps> = ({ children }) => {
     const [ensaiosFino, setEnsaiosFino] = useState<Peneira[]>([
-        { id: 1, numero: '#1,2', massaRetida: '' },
-        { id: 2, numero: '#0,6', massaRetida: '' },
-        { id: 3, numero: '#0,42', massaRetida: '' },
-        { id: 4, numero: '#0,25', massaRetida: '' },
-        { id: 5, numero: '#0,15', massaRetida: '' },
-        { id: 6, numero: '#0,075', massaRetida: '' },
+        { id: 1.2, numero: '#1,2', massaRetida: '' },
+        { id: 0.6, numero: '#0,6', massaRetida: '' },
+        { id: 0.42, numero: '#0,42', massaRetida: '' },
+        { id: 0.25, numero: '#0,25', massaRetida: '' },
+        { id: 0.15, numero: '#0,15', massaRetida: '' },
+        { id: 0.75, numero: '#0,075', massaRetida: '' },
     ]);
 
     const [ensaiosGrosso, setEnsaiosGrosso] = useState<Peneira[]>([
-        { id: 7, numero: '#50', massaRetida: '' },
-        { id: 8, numero: '#38', massaRetida: '' },
-        { id: 9, numero: '#25', massaRetida: '' },
-        { id: 10, numero: '#19', massaRetida: '' },
-        { id: 11, numero: '#9,5', massaRetida: '' },
-        { id: 12, numero: '#4,8', massaRetida: '' },
-        { id: 13, numero: '#2', massaRetida: '' },
+        { id: 0.50, numero: '#50', massaRetida: '' },
+        { id: 38, numero: '#38', massaRetida: '' },
+        { id: 25, numero: '#25', massaRetida: '' },
+        { id: 19, numero: '#19', massaRetida: '' },
+        { id: 9.5, numero: '#9,5', massaRetida: '' },
+        { id: 4.8, numero: '#4,8', massaRetida: '' },
+        { id: 2, numero: '#2', massaRetida: '' },
 
     ]);
 

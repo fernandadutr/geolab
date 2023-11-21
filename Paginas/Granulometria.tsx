@@ -53,7 +53,7 @@ const Granulometria: React.FC = () => {
           onPress={() => navigation.navigate('PeneiramentoGrosso')}
           style={{
             width: '40%',
-            backgroundColor: teorUmidadeConcluido ? '#F2F6CD' : '#F1F5F4',
+            backgroundColor: teorUmidadeConcluido && preparacaoAmostraConcluido ? '#F2F6CD' : '#F1F5F4',
             alignContent: 'center',
             borderRadius: 8,
             padding: 26,

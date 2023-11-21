@@ -3,6 +3,8 @@ import { View, Text, Image, TouchableOpacity, Animated, Easing } from 'react-nat
 import styles from '../Styles/Componentes';
 import { Ensaio } from '../FakeDB/EnsaiosDB';
 import Collapsible from 'react-native-collapsible';
+import { useNavigation } from '@react-navigation/native';
+import { authScreenProp } from '../Paginas/Granulometria';
 
 interface ResultadoProps {
     Ensaio: Ensaio;
@@ -12,6 +14,13 @@ const Resultado: React.FC<ResultadoProps> = ({ Ensaio }) => {
     const [rotacaoAnim] = useState(new Animated.Value(0));
     const [estaGirando, setEstaGirando] = useState(false);
     const [estaExpandido, setEstaExpandido] = useState(false);
+    const navigation = useNavigation<authScreenProp>();
+
+
+    const maisEnsaios = () => {
+        return navigation.navigate('EscolherEnsaio')
+
+    }
 
     const girarSeta = () => {
         if (!estaGirando) {
@@ -35,7 +44,7 @@ const Resultado: React.FC<ResultadoProps> = ({ Ensaio }) => {
         }
 
         setEstaGirando(!estaGirando);
-        setEstaExpandido(!estaExpandido); // Alternar a expansão quando clicado
+        setEstaExpandido(!estaExpandido);
     };
 
     const rotacao = rotacaoAnim.interpolate({
@@ -58,6 +67,12 @@ const Resultado: React.FC<ResultadoProps> = ({ Ensaio }) => {
             <Collapsible collapsed={!estaExpandido}>
                 <Text style={{ margin: 15 }}>Nome do Usuario: {Ensaio.usuario}</Text>
                 <Text style={{ margin: 15 }}>Data: {Ensaio.data.toString()}</Text>
+                <TouchableOpacity
+                    onPress={() => maisEnsaios()}
+                    style={{ padding: 4, backgroundColor: '#A8B444', borderRadius: 8, alignItems: 'center', maxWidth: 200, alignSelf: 'center' }}
+                >
+                    <Text>Mais Ensaios</Text>
+                </TouchableOpacity>
             </Collapsible>
         </View>
     );

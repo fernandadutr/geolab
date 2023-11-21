@@ -8,6 +8,7 @@ import { useUser } from '../Context/Context';
 import { useEnsaios } from '../Context/EnsaiosContext';
 import Modal from 'react-native-modal';
 import { Image } from 'react-native-elements';
+import { usePassosConcluidos } from '../Context/ResultadosContext';
 
 interface ModalSalvarEnsaioProps {
     visible: boolean;
@@ -18,30 +19,34 @@ type authScreenProp = NativeStackNavigationProp<RootStackParamList, 'Auth'>;
 
 const ModalSalvarEnsaio: React.FC<ModalSalvarEnsaioProps> = ({ visible, onClose }) => {
     const [nomeEnsaio, setNomeEnsaio] = useState('');
+    const [coordenada, setCoordenada] = useState(''); // Adiciona estado para a coordenada
     const { userName } = useUser();
+    const { setPassoConcluido } = usePassosConcluidos()
     const { ensaios, setEnsaios } = useEnsaios();
-
     const navigation = useNavigation<authScreenProp>();
 
     const handleSalvarEnsaio = () => {
-
         const novoEnsaio: Ensaio = {
             id: ensaios.length + 1,
             nome: nomeEnsaio,
             data: new Date(),
+            coordenada: coordenada, // Adiciona a coordenada ao novo ensaio
             concluidos: ['Teor de Umidade'],
             usuario: userName,
         };
+        setPassoConcluido('teorUmidade')
+
 
         setEnsaios([...ensaios, novoEnsaio]);
 
         onClose();
         setNomeEnsaio('');
+        setCoordenada('');
         navigation.navigate('Home');
     };
 
     const handleCompartilharEnsaio = () => {
-        const textoCompartilhamento = `Nome do Ensaio: ${nomeEnsaio}\nData: ${new Date()}\nConcluídos: Teor de Umidade`;
+        const textoCompartilhamento = `Nome do Ensaio: ${nomeEnsaio}\nCoordenada: ${coordenada}\nData: ${new Date()}\nConcluídos: Teor de Umidade`;
 
         Share.share({
             message: textoCompartilhamento,
@@ -56,7 +61,6 @@ const ModalSalvarEnsaio: React.FC<ModalSalvarEnsaioProps> = ({ visible, onClose 
             })
             .catch(error => console.error(error));
     };
-
 
     return (
         <Modal
@@ -79,13 +83,22 @@ const ModalSalvarEnsaio: React.FC<ModalSalvarEnsaioProps> = ({ visible, onClose 
                         style={{ backgroundColor: '#F1F5F4', borderRadius: 9 }}
                         placeholder="Digite o nome do ensaio"
                     />
+
+                    {/* Adiciona o input para a coordenada */}
+                    <Text style={{ color: '#A8B444', fontWeight: 'bold', fontSize: 18, marginTop: 10 }}>Coordenada</Text>
+                    <TextInput
+                        value={coordenada}
+                        onChangeText={setCoordenada}
+                        style={{ backgroundColor: '#F1F5F4', borderRadius: 9 }}
+                        placeholder="Digite a coordenada"
+                    />
+
                     <View style={{
                         display: 'flex',
                         flexDirection: 'row',
-                        justifyContent: 'space-between', // Controla o espaço entre os botões
+                        justifyContent: 'space-between',
                         width: '50%',
                     }}>
-
                         <TouchableOpacity
                             style={{ backgroundColor: '#A8B444', borderRadius: 9, margin: 10, padding: 10 }}
                             onPress={handleSalvarEnsaio}
@@ -99,7 +112,7 @@ const ModalSalvarEnsaio: React.FC<ModalSalvarEnsaioProps> = ({ visible, onClose 
                             onPress={handleCompartilharEnsaio}
                         >
                             <Image source={require('./TeorUmidade/sharePNG.png')}
-                                style={{ width: 22, height: 25}}
+                                style={{ width: 22, height: 25 }}
                             />
                         </TouchableOpacity>
                     </View>
