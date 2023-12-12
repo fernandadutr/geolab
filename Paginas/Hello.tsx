@@ -30,8 +30,8 @@ const Hello: React.FC = () => {
 
     return (
         <View style={styles.container}>
-            <Image style={{ width: 100, height: 100 }} source={require('../Styles/imagens/logo.png')} />
-            <Text style={styles.title}>AjudanteLab</Text>
+            <Image style={{ width: 100, height: 100 }} source={require('../assets/adaptive-icon.png')} />
+                <Image style={{ width: 100, height: 20, marginBottom: 5 }} source={require('../assets/geolab.png')} />
             <TextInput
                 style={styles.input}
                 placeholder='Qual seu nome?'

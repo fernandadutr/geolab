@@ -22,7 +22,7 @@ const CustomHeader: React.FC = () => {
     }}>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Image
-          source={require('../Styles/imagens/logo.png')}
+          source={require('../assets/adaptive-icon.png')}
           style={{ width: 45, height: 45, margin: 10 }}
         />
         <View style={{ display: 'flex', flexDirection: 'column' }}>
